@@ -1,0 +1,2368 @@
+# depslib dependency file v1.0
+1721012758 source:e:\backup\mycloud4100\coding\cpp\projects\mefview\src\resource.rc
+
+1721475205 source:e:\backup\mycloud4100\coding\cpp\projects\mefview\src\bytestream.cpp
+	<cstring>
+	<windows.h>
+	<math.h>
+	"bytestream.h"
+
+1720420806 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\bytestream.h
+	<iostream>
+	<string>
+	<cmath>
+	<cstdint>
+	<algorithm>
+	<windows.h>
+	<vector>
+	<memory>
+	<fstream>
+	<type_traits>
+	<stdexcept>
+	"stringext.h"
+	"filesystem.h"
+
+1720412893 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\stringext.h
+	<iostream>
+	<cstdint>
+	<cctype>
+	<sstream>
+	<iomanip>
+	<string>
+	<algorithm>
+	<vector>
+	<regex>
+	<windows.h>
+	<time.h>
+
+1668570638 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\stringenc.h
+	<iostream>
+	<cstdint>
+	<string>
+	<windows.h>
+	"stringext.h"
+
+1728082922 source:e:\backup\mycloud4100\coding\cpp\projects\mefview\main.cpp
+	<FL/Fl.H>
+	<FL/Fl_Window.H>
+	"viewport3d.h"
+	<glm/glm.hpp>
+	<vector>
+	<iostream>
+	<iostream>
+	<fstream>
+	<iomanip>
+	<sstream>
+	<cstdint>
+	<array>
+	<vector>
+	<sstream>
+	<string>
+	<cstring>
+	<algorithm>
+	<cmath>
+	<unordered_map>
+	<windows.h>
+
+1531731480 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\png.h
+	"pnglibconf.h"
+	"pngconf.h"
+
+1437730602 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\pnglibconf.h
+
+1531731480 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\pngconf.h
+	<limits.h>
+	<stddef.h>
+	<stdio.h>
+	<setjmp.h>
+	<time.h>
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\x.h
+	"Enumerations.H"
+	"win32.H"
+	"mac.H"
+	<X11/Xlib.h>
+	<X11/Xutil.h>
+	<X11/Xatom.h>
+	"Fl_Window.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\enumerations.h
+	<FL/abi-version.h>
+	"Fl_Export.H"
+	"fl_types.h"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\abi-version.h
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_export.h
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_types.h
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\win32.h
+	<windows.h>
+	<FL/Fl_Window.H>
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_window.h
+	<windows.h>
+	"Fl_Group.H"
+	"Fl_Bitmap.H"
+	<stdlib.h>
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_group.h
+	"Fl_Widget.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_widget.h
+	"Enumerations.H"
+	<stdint.h>
+	<stddef.h>
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_bitmap.h
+	"Fl_Image.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_image.h
+	"Enumerations.H"
+	<stdlib.h>
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\mac.h
+	<FL/Fl_Widget.H>
+	<ApplicationServices/ApplicationServices.h>
+	"Fl_Window.H"
+	"../src/Fl_Font.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl.h
+	<FL/Fl_Export.H>
+	<FL/Fl_Cairo.H>
+	"fl_utf8.h"
+	"Enumerations.H"
+	<stdio.h>
+	<FL/Fl.H>
+	<FL/Fl_Window.H>
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_cairo.h
+	<FL/Fl_Export.H>
+	<cairo.h>
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_utf8.h
+	"Fl_Export.H"
+	"fl_types.h"
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<locale.h>
+	<ctype.h>
+	<wchar.h>
+	<sys/stat.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<X11/Xlocale.h>
+	<X11/Xlib.h>
+	<locale.h>
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_button.h
+	"Fl_Widget.H"
+
+1637431834 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_native_file_chooser.h
+	<windows.h>
+	<commdlg.h>
+	<shlobj.h>
+	<FL/Fl_File_Chooser.H>
+	<FL/filename.H>
+	<FL/Fl_Native_File_Chooser.H>
+	<FL/Fl_Native_File_Chooser.H>
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_file_chooser.h
+	<FL/Fl.H>
+	<FL/Fl_Double_Window.H>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<FL/Fl_Group.H>
+	<FL/Fl_Choice.H>
+	<FL/Fl_Menu_Button.H>
+	<FL/Fl_Button.H>
+	<FL/Fl_Preferences.H>
+	<FL/Fl_Tile.H>
+	<FL/Fl_File_Browser.H>
+	<FL/Fl_Box.H>
+	<FL/Fl_Check_Button.H>
+	<FL/Fl_File_Input.H>
+	<FL/Fl_Return_Button.H>
+	<FL/fl_ask.H>
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_double_window.h
+	"Fl_Window.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_choice.h
+	"Fl_Menu_.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_menu_.h
+	"Fl_Widget.H"
+	"Fl_Menu_Item.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_menu_item.h
+	"Fl_Widget.H"
+	"Fl_Image.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_menu_button.h
+	"Fl_Menu_.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_preferences.h
+	<stdio.h>
+	"Fl_Export.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_tile.h
+	"Fl_Group.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_file_browser.h
+	"Fl_Browser.H"
+	"Fl_File_Icon.H"
+	"filename.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_browser.h
+	"Fl_Browser_.H"
+	"Fl_Image.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_browser_.h
+	"Fl_Group.H"
+	"Fl_Scrollbar.H"
+	<FL/Fl.H>
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_scrollbar.h
+	"Fl_Slider.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_slider.h
+	"Fl_Valuator.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_valuator.h
+	"Fl_Widget.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_file_icon.h
+	"Fl.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\filename.h
+	"/usr/include/dirent.h"
+	"Fl_Export.H"
+	<FL/filename.H>
+	<sys/types.h>
+	<direct.h>
+	<sys/types.h>
+	<dirent.h>
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_box.h
+	"Fl_Widget.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_check_button.h
+	"Fl_Light_Button.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_light_button.h
+	"Fl_Button.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_file_input.h
+	<FL/Fl_Input.H>
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_input.h
+	"Fl_Input_.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_input_.h
+	"Fl_Widget.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_return_button.h
+	"Fl_Button.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_ask.h
+	"Enumerations.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_rgb_image.h
+	"Fl_Image.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_png_image.h
+	"Fl_Image.H"
+
+1637431834 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_jpeg_image.h
+	"Fl_Image.H"
+
+1637431834 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_int_input.h
+	"Fl_Input.H"
+
+1721175904 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\version.h
+
+1709847721 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\stb_image\stb_image.h
+	"stb_image.h"
+	<stdio.h>
+	<stdlib.h>
+	<stdarg.h>
+	<stddef.h>
+	<stdlib.h>
+	<string.h>
+	<limits.h>
+	<math.h>
+	<stdio.h>
+	<assert.h>
+	<stdint.h>
+	<emmintrin.h>
+	<intrin.h>
+	<arm_neon.h>
+
+1720914361 source:e:\backup\mycloud4100\coding\cpp\projects\mefview\src\filesystem.cpp
+	"filesystem.h"
+
+1720911165 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\filesystem.h
+	<iostream>
+	<cmath>
+	<stack>
+	<string>
+	<vector>
+	<sstream>
+	<cstring>
+	<windows.h>
+	<shlwapi.h>
+	<shlobj.h>
+	<shobjidl.h>
+	<combaseapi.h>
+	<tchar.h>
+	<strings.h>
+	<wchar.h>
+
+1668570108 source:e:\backup\mycloud4100\coding\cpp\projects\mefview\src\stringenc.cpp
+	"stringenc.h"
+
+1720412893 source:e:\backup\mycloud4100\coding\cpp\projects\mefview\src\stringext.cpp
+	"windows.h"
+	"stringext.h"
+
+1720748072 source:e:\backup\mycloud4100\coding\cpp\projects\mefview\src\biginventoryfile.cpp
+	"BigInventoryFile.h"
+	"Filenames.h"
+	"QuickCompression.h"
+	<algorithm>
+	<shlobj.h>
+	<fstream>
+
+1720744971 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\biginventoryfile.h
+	<windows.h>
+	<iostream>
+	<vector>
+	<cstdint>
+	<string>
+	<sstream>
+	<iomanip>
+	<fstream>
+	<algorithm>
+	<iterator>
+	<unordered_map>
+	"stringext.h"
+	"filesystem.h"
+	"bytestream.h"
+
+1720336552 source:e:\backup\mycloud4100\coding\cpp\projects\mefview\src\filenames.cpp
+	"Filenames.h"
+	"filesystem.h"
+	<cctype>
+	<vector>
+	<fstream>
+	<sstream>
+	<algorithm>
+
+1720336534 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\filenames.h
+	<vector>
+	<cstdint>
+	<string>
+	<unordered_map>
+
+1721095341 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\resource.h
+
+1721015734 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\interface.h
+	<FL/Fl.H>
+	"version.h"
+	"resource.h"
+	"filesystem.h"
+	"viewport3d.h"
+	<sstream>
+	<iomanip>
+	<sstream>
+	<string>
+	<vector>
+	<numeric>
+	<chrono>
+	<random>
+	<ctime>
+	<cmath>
+	<FL/x.H>
+	<FL/fl_ask.H>
+	<FL/fl_draw.H>
+	<FL/Fl_File_Chooser.H>
+	<FL/Fl_Multi_Label.H>
+	<FL/Fl_Table_Row.H>
+	<FL/Fl_Pixmap.H>
+	<FL/Fl_Image.H>
+	"interface_logo.h"
+	"Filenames.h"
+	"UFG/BigInventoryFile.h"
+	"UFG/QuickCompression.h"
+	<FL/Fl_Double_Window.H>
+	<FL/Fl_Menu_Bar.H>
+	<FL/Fl_Group.H>
+	<FL/Fl_Input.H>
+	<FL/Fl_Output.H>
+	<FL/Fl_Box.H>
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_draw.h
+	<FL/x.H>
+	<FL/Enumerations.H>
+	<FL/Fl_Window.H>
+	<FL/Fl_Device.H>
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_device.h
+	<FL/x.H>
+	<FL/Fl_Plugin.H>
+	<FL/Fl_Image.H>
+	<FL/Fl_Bitmap.H>
+	<FL/Fl_Pixmap.H>
+	<FL/Fl_RGB_Image.H>
+	<stdlib.h>
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_plugin.h
+	"Fl_Preferences.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_pixmap.h
+	"Fl_Image.H"
+	"x.H"
+
+1717890249 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\dirent.h
+	<windows.h>
+	<stdio.h>
+	<stdarg.h>
+	<wchar.h>
+	<string.h>
+	<stdlib.h>
+	<malloc.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<errno.h>
+	<ctype.h>
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_table.h
+	<sys/types.h>
+	<string.h>
+	<malloc.h>
+	<stdlib.h>
+	<FL/Fl.H>
+	<FL/Fl_Group.H>
+	<FL/Fl_Scroll.H>
+	<FL/Fl_Box.H>
+	<FL/Fl_Scrollbar.H>
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_scroll.h
+	"Fl_Group.H"
+	"Fl_Scrollbar.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_menu_bar.h
+	"Fl_Menu_.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_output.h
+	"Fl_Input.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_table_row.h
+	"Fl_Table.H"
+
+1722397811 source:e:\backup\mycloud4100\coding\cpp\projects\mefview\src\interface.cxx
+	"interface.h"
+	"guiicon.h"
+
+1719882005 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\interface_logo.h
+
+1719882004 source:e:\backup\mycloud4100\coding\cpp\projects\mefview\src\interface_logo.cpp
+	"interface_logo.h"
+
+1720356929 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\quickcompression.h
+	<iostream>
+	<fstream>
+	<vector>
+	"Filenames.h"
+	<array>
+	<stdexcept>
+	<unordered_map>
+	<string>
+	<utility>
+	<deque>
+	<thread>
+	<mutex>
+	<condition_variable>
+	<functional>
+	<memory>
+	<queue>
+
+1720565532 source:e:\backup\mycloud4100\coding\cpp\projects\mefview\src\quickcompression.cpp
+	"QuickCompression.h"
+	<unordered_map>
+	<string>
+	<limits>
+	<cstring>
+	<iostream>
+	<algorithm>
+	<deque>
+	<thread>
+	"windows.h"
+	<mutex>
+	<condition_variable>
+	<sstream>
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_multi_label.h
+
+1720141935 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\guiicon.h
+	"guiicon.h"
+	<FL/Fl_Image.H>
+
+1720279714 e:\backup\mycloud4100\coding\cpp\projects\mefview\interface.h
+	<FL/Fl.H>
+	"version.h"
+	"resource.h"
+	"filesystem.h"
+	<sstream>
+	<iomanip>
+	<sstream>
+	<string>
+	<vector>
+	<numeric>
+	<chrono>
+	<ctime>
+	<cmath>
+	<FL/x.H>
+	<FL/fl_ask.H>
+	<FL/fl_draw.H>
+	<FL/Fl_File_Chooser.H>
+	<FL/Fl_Multi_Label.H>
+	<FL/Fl_Table_Row.H>
+	<FL/Fl_Pixmap.H>
+	<FL/Fl_Image.H>
+	"interface_logo.h"
+	"Filenames.h"
+	"BigInventoryFile.h"
+	<FL/Fl_Double_Window.H>
+	<FL/Fl_Menu_Bar.H>
+	<FL/Fl_Group.H>
+	<FL/Fl_Input.H>
+	<FL/Fl_Output.H>
+	<FL/Fl_Box.H>
+
+1720918091 source:e:\backup\mycloud4100\coding\cpp\projects\mefview\src\ufg\bonepalette.cpp
+	"UFG/BonePalette.h"
+
+1720918099 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ufg\bonepalette.h
+	<iostream>
+	<cstdint>
+	"UFG/ResourceID.h"
+
+1721272159 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ufg\resourceid.h
+	<iostream>
+	<cstdint>
+	"bytestream.h"
+	"Filenames.h"
+
+1721091697 source:e:\backup\mycloud4100\coding\cpp\projects\mefview\src\ufg\buffer.cpp
+	"UFG/Buffer.h"
+
+1721091833 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ufg\buffer.h
+	<iostream>
+	<cstdint>
+	"UFG/ResourceID.h"
+
+1720917801 source:e:\backup\mycloud4100\coding\cpp\projects\mefview\src\ufg\material.cpp
+	"UFG/Material.h"
+
+1721357151 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ufg\material.h
+	<iostream>
+	<cstdint>
+	"UFG/ResourceID.h"
+
+1720921107 source:e:\backup\mycloud4100\coding\cpp\projects\mefview\src\ufg\mesh.cpp
+	"UFG/Mesh.h"
+
+1720921117 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ufg\mesh.h
+	<iostream>
+	<cstdint>
+	"UFG/ResourceID.h"
+
+1720917642 source:e:\backup\mycloud4100\coding\cpp\projects\mefview\src\ufg\model.cpp
+	"UFG/Model.h"
+
+1720921133 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ufg\model.h
+	<iostream>
+	<cstdint>
+	"UFG/ResourceID.h"
+	"UFG/Texture.h"
+	"UFG/Mesh.h"
+
+1721171644 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ufg\texture.h
+	<iostream>
+	<cstdint>
+	"Texture2D.h"
+	"UFG/ResourceID.h"
+
+1721017628 source:e:\backup\mycloud4100\coding\cpp\projects\mefview\src\ufg\quickcompression.cpp
+	"UFG/QuickCompression.h"
+	<unordered_map>
+	<string>
+	<limits>
+	<cstring>
+	<iostream>
+	<algorithm>
+	<deque>
+	<thread>
+	"windows.h"
+	<mutex>
+	<condition_variable>
+	<sstream>
+
+1720356929 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ufg\quickcompression.h
+	<iostream>
+	<fstream>
+	<vector>
+	"Filenames.h"
+	<array>
+	<stdexcept>
+	<unordered_map>
+	<string>
+	<utility>
+	<deque>
+	<thread>
+	<mutex>
+	<condition_variable>
+	<functional>
+	<memory>
+	<queue>
+
+1721272159 source:e:\backup\mycloud4100\coding\cpp\projects\mefview\src\ufg\resourceid.cpp
+	"UFG/ResourceID.h"
+
+1720921401 source:e:\backup\mycloud4100\coding\cpp\projects\mefview\src\ufg\skeleton.cpp
+	"UFG/Skeleton.h"
+
+1720917504 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ufg\skeleton.h
+	<iostream>
+	<cstdint>
+	"UFG/ResourceID.h"
+
+1721174032 source:e:\backup\mycloud4100\coding\cpp\projects\mefview\src\ufg\texture.cpp
+	"Texture2D.h"
+	"UFG/Texture.h"
+
+1728080246 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\viewport3d.h
+	<FL/Fl.H>
+	<FL/Fl_Gl_Window.H>
+	<FL/Fl_PNG_Image.H>
+	<GL/glew.h>
+	<glm/glm.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtc/type_ptr.hpp>
+	<FTGL/ftgl.h>
+	<string>
+	<vector>
+	<random>
+	<iostream>
+	<stdexcept>
+	<algorithm>
+	<chrono>
+	<unordered_map>
+	"resource.h"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_gl_window.h
+	"Fl_Window.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\fl_shared_image.h
+	"Fl_Image.H"
+
+1637435434 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\fl\gl.h
+	"Enumerations.H"
+	<windows.h>
+	<OpenGL/gl.h>
+	<GL/gl.h>
+
+1684551650 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gl\gl.h
+	<windows.h>
+	<stddef.h>
+
+1684551650 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gl\glu.h
+	<GL/gl.h>
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\glm.hpp
+	"detail/_fixes.hpp"
+	<cmath>
+	<climits>
+	<cfloat>
+	<limits>
+	<cassert>
+	"fwd.hpp"
+	"vec2.hpp"
+	"vec3.hpp"
+	"vec4.hpp"
+	"mat2x2.hpp"
+	"mat2x3.hpp"
+	"mat2x4.hpp"
+	"mat3x2.hpp"
+	"mat3x3.hpp"
+	"mat3x4.hpp"
+	"mat4x2.hpp"
+	"mat4x3.hpp"
+	"mat4x4.hpp"
+	"trigonometric.hpp"
+	"exponential.hpp"
+	"common.hpp"
+	"packing.hpp"
+	"geometric.hpp"
+	"matrix.hpp"
+	"vector_relational.hpp"
+	"integer.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\_fixes.hpp
+	<cmath>
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\setup.hpp
+	<cassert>
+	<cstddef>
+	"../simd/platform.h"
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\simd\platform.h
+	<cuda.h>
+	<intrin.h>
+	<immintrin.h>
+	<immintrin.h>
+	<nmmintrin.h>
+	<smmintrin.h>
+	<tmmintrin.h>
+	<pmmintrin.h>
+	<emmintrin.h>
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\simd\neon.h
+	<arm_neon.h>
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\fwd.hpp
+	"detail/type_int.hpp"
+	"detail/type_float.hpp"
+	"detail/type_vec.hpp"
+	"detail/type_mat.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\qualifier.hpp
+	"setup.hpp"
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\vec2.hpp
+	"detail/type_vec2.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_bool2.hpp
+	"../detail/type_vec2.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_vec2.hpp
+	"type_vec.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec2.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\_swizzle.hpp
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\_swizzle_func.hpp
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_vec2.inl
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\compute_vector_relational.hpp
+	"setup.hpp"
+	<limits>
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_bool2_precision.hpp
+	"../detail/type_vec2.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_float2.hpp
+	"../detail/type_vec2.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_float2_precision.hpp
+	"../detail/type_vec2.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_double2.hpp
+	"../detail/type_vec2.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_double2_precision.hpp
+	"../detail/type_vec2.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_int2.hpp
+	"../detail/type_vec2.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_int2_sized.hpp
+	"../ext/vector_int2.hpp"
+	"../ext/scalar_int_sized.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\scalar_int_sized.hpp
+	"../detail/setup.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_uint2.hpp
+	"../detail/type_vec2.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_uint2_sized.hpp
+	"../ext/vector_uint2.hpp"
+	"../ext/scalar_uint_sized.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\scalar_uint_sized.hpp
+	"../detail/setup.hpp"
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\vec3.hpp
+	"detail/type_vec3.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_bool3.hpp
+	"../detail/type_vec3.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_vec3.hpp
+	"type_vec.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec3.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_vec3.inl
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_bool3_precision.hpp
+	"../detail/type_vec3.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_float3.hpp
+	"../detail/type_vec3.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_float3_precision.hpp
+	"../detail/type_vec3.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_double3.hpp
+	"../detail/type_vec3.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_double3_precision.hpp
+	"../detail/type_vec3.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_int3.hpp
+	"../detail/type_vec3.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_int3_sized.hpp
+	"../ext/vector_int3.hpp"
+	"../ext/scalar_int_sized.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_uint3.hpp
+	"../detail/type_vec3.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_uint3_sized.hpp
+	"../ext/vector_uint3.hpp"
+	"../ext/scalar_uint_sized.hpp"
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\vec4.hpp
+	"detail/type_vec4.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_bool4.hpp
+	"../detail/type_vec4.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_vec4.hpp
+	"type_vec.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec4.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_vec4.inl
+	"type_vec4_simd.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_vec4_simd.inl
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_bool4_precision.hpp
+	"../detail/type_vec4.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_float4.hpp
+	"../detail/type_vec4.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_float4_precision.hpp
+	"../detail/type_vec4.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_double4.hpp
+	"../detail/type_vec4.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_double4_precision.hpp
+	"../detail/setup.hpp"
+	"../detail/type_vec4.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_int4.hpp
+	"../detail/type_vec4.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_int4_sized.hpp
+	"../ext/vector_int4.hpp"
+	"../ext/scalar_int_sized.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_uint4.hpp
+	"../detail/type_vec4.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_uint4_sized.hpp
+	"../ext/vector_uint4.hpp"
+	"../ext/scalar_uint_sized.hpp"
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\mat2x2.hpp
+	"detail/type_mat2x2.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_double2x2.hpp
+	"../detail/type_mat2x2.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_mat2x2.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat2x2.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_mat2x2.inl
+	"func_matrix.hpp"
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\matrix.hpp
+	"detail/func_matrix.hpp"
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\mat2x3.hpp
+	"detail/type_mat2x3.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_double2x3.hpp
+	"../detail/type_mat2x3.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_mat2x3.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat2x3.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_mat2x3.inl
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_double2x3_precision.hpp
+	"../detail/type_mat2x3.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_float2x3.hpp
+	"../detail/type_mat2x3.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_float2x3_precision.hpp
+	"../detail/type_mat2x3.hpp"
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\mat2x4.hpp
+	"detail/type_mat2x4.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_double2x4.hpp
+	"../detail/type_mat2x4.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_mat2x4.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat2x4.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_mat2x4.inl
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_double2x4_precision.hpp
+	"../detail/type_mat2x4.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_float2x4.hpp
+	"../detail/type_mat2x4.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_float2x4_precision.hpp
+	"../detail/type_mat2x4.hpp"
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\mat3x2.hpp
+	"detail/type_mat3x2.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_double3x2.hpp
+	"../detail/type_mat3x2.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_mat3x2.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat3x2.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_mat3x2.inl
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_double3x2_precision.hpp
+	"../detail/type_mat3x2.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_float3x2.hpp
+	"../detail/type_mat3x2.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_float3x2_precision.hpp
+	"../detail/type_mat3x2.hpp"
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\mat3x3.hpp
+	"detail/type_mat3x3.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_double3x3.hpp
+	"../detail/type_mat3x3.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_mat3x3.hpp
+	"../fwd.hpp"
+	"type_vec3.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat3x3.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_mat3x3.inl
+	"func_matrix.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_double3x3_precision.hpp
+	"../detail/type_mat3x3.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_float3x3.hpp
+	"../detail/type_mat3x3.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_float3x3_precision.hpp
+	"../detail/type_mat3x3.hpp"
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\mat3x4.hpp
+	"detail/type_mat3x4.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_double3x4.hpp
+	"../detail/type_mat3x4.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_mat3x4.hpp
+	"../fwd.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat3x4.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_mat3x4.inl
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_double3x4_precision.hpp
+	"../detail/type_mat3x4.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_float3x4.hpp
+	"../detail/type_mat3x4.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_float3x4_precision.hpp
+	"../detail/type_mat3x4.hpp"
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\mat4x2.hpp
+	"detail/type_mat4x2.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_double4x2.hpp
+	"../detail/type_mat4x2.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_mat4x2.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat4x2.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_mat4x2.inl
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_double4x2_precision.hpp
+	"../detail/type_mat4x2.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_float4x2.hpp
+	"../detail/type_mat4x2.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_float4x2_precision.hpp
+	"../detail/type_mat2x2.hpp"
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\mat4x3.hpp
+	"detail/type_mat4x3.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_double4x3.hpp
+	"../detail/type_mat4x3.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_mat4x3.hpp
+	"../fwd.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat4x3.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_mat4x3.inl
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_double4x3_precision.hpp
+	"../detail/type_mat4x3.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_float4x3.hpp
+	"../detail/type_mat4x3.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_float4x3_precision.hpp
+	"../detail/type_mat4x3.hpp"
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\mat4x4.hpp
+	"detail/type_mat4x4.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_double4x4.hpp
+	"../detail/type_mat4x4.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_mat4x4.hpp
+	"../fwd.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat4x4.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_mat4x4.inl
+	"func_matrix.hpp"
+	"type_mat4x4_simd.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_mat4x4_simd.inl
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_double4x4_precision.hpp
+	"../detail/type_mat4x4.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_float4x4.hpp
+	"../detail/type_mat4x4.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_float4x4_precision.hpp
+	"../detail/type_mat4x4.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\func_matrix.inl
+	"../geometric.hpp"
+	<limits>
+	"func_matrix_simd.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\geometric.hpp
+	"detail/func_geometric.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\func_geometric.inl
+	"func_exponential.hpp"
+	"func_common.hpp"
+	"type_vec2.hpp"
+	"type_vec4.hpp"
+	"type_float.hpp"
+	"func_geometric_simd.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\exponential.hpp
+	"detail/func_exponential.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_vec1.hpp
+	"../fwd.hpp"
+	"type_vec.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec1.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_vec1.inl
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\func_exponential.inl
+	"func_vector_relational.hpp"
+	"_vectorize.hpp"
+	<limits>
+	<cmath>
+	<cassert>
+	"func_exponential_simd.inl"
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\vector_relational.hpp
+	"detail/func_vector_relational.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\func_vector_relational.inl
+	<limits>
+	"func_vector_relational_simd.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\func_vector_relational_simd.inl
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\_vectorize.hpp
+	"type_vec1.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\func_exponential_simd.inl
+	"../simd/exponential.h"
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\simd\exponential.h
+	"platform.h"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\common.hpp
+	"detail/func_common.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\func_common.inl
+	"func_vector_relational.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"_vectorize.hpp"
+	<limits>
+	"func_common_simd.inl"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\compute_common.hpp
+	"setup.hpp"
+	<limits>
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\func_common_simd.inl
+	"../simd/common.h"
+	<immintrin.h>
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\simd\common.h
+	"platform.h"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\func_geometric_simd.inl
+	"../simd/geometric.h"
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\simd\geometric.h
+	"common.h"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\func_matrix_simd.inl
+	"type_mat4x4.hpp"
+	"func_geometric.hpp"
+	"../simd/matrix.h"
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\simd\matrix.h
+	"geometric.h"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_double2x2_precision.hpp
+	"../detail/type_mat2x2.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_float2x2.hpp
+	"../detail/type_mat2x2.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_float2x2_precision.hpp
+	"../detail/type_mat2x2.hpp"
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\trigonometric.hpp
+	"detail/func_trigonometric.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\func_trigonometric.inl
+	"_vectorize.hpp"
+	<cmath>
+	<limits>
+	"func_trigonometric_simd.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\func_trigonometric_simd.inl
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\packing.hpp
+	"detail/func_packing.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\func_packing.inl
+	"func_common.hpp"
+	"type_half.hpp"
+	"../fwd.hpp"
+	"func_packing_simd.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_half.hpp
+	"setup.hpp"
+	"type_half.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_half.inl
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\func_packing_simd.inl
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\integer.hpp
+	"detail/func_integer.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\func_integer.inl
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_int.hpp"
+	"_vectorize.hpp"
+	<intrin.h>
+	<limits>
+	"func_integer_simd.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\func_integer_simd.inl
+	"../simd/integer.h"
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\simd\integer.h
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtc\quaternion.hpp
+	"../mat3x3.hpp"
+	"../mat4x4.hpp"
+	"../vec3.hpp"
+	"../vec4.hpp"
+	"../gtc/constants.hpp"
+	"quaternion.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtc\constants.hpp
+	"../detail/setup.hpp"
+	"constants.inl"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\scalar_constants.hpp
+	"../detail/setup.hpp"
+	"scalar_constants.inl"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\scalar_constants.inl
+	<limits>
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtc\constants.inl
+	<limits>
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtc\matrix_transform.hpp
+	"../mat4x4.hpp"
+	"../vec2.hpp"
+	"../vec3.hpp"
+	"../vec4.hpp"
+	"../gtc/constants.hpp"
+	"matrix_transform.inl"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_projection.hpp
+	"../gtc/constants.hpp"
+	"../geometric.hpp"
+	"../trigonometric.hpp"
+	"../matrix.hpp"
+	"matrix_projection.inl"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_projection.inl
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_clip_space.hpp
+	"../ext/scalar_constants.hpp"
+	"../geometric.hpp"
+	"../trigonometric.hpp"
+	"matrix_clip_space.inl"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_clip_space.inl
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_transform.hpp
+	"../gtc/constants.hpp"
+	"../geometric.hpp"
+	"../trigonometric.hpp"
+	"../matrix.hpp"
+	"matrix_transform.inl"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\matrix_transform.inl
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtc\matrix_transform.inl
+	"../geometric.hpp"
+	"../trigonometric.hpp"
+	"../matrix.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_relational.hpp
+	"../detail/qualifier.hpp"
+	"vector_relational.inl"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_relational.inl
+	"../vector_relational.hpp"
+	"../common.hpp"
+	"../detail/qualifier.hpp"
+	"../detail/type_float.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_float.hpp
+	"setup.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\quaternion_common.hpp
+	"../ext/scalar_constants.hpp"
+	"../ext/quaternion_geometric.hpp"
+	"../common.hpp"
+	"../trigonometric.hpp"
+	"../exponential.hpp"
+	<limits>
+	"quaternion_common.inl"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\quaternion_geometric.hpp
+	"../geometric.hpp"
+	"../exponential.hpp"
+	"../ext/vector_relational.hpp"
+	"quaternion_geometric.inl"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\quaternion_geometric.inl
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\quaternion_common.inl
+	"quaternion_common_simd.inl"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\quaternion_common_simd.inl
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\quaternion_float.hpp
+	"../detail/type_quat.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_quat.hpp
+	"../detail/type_mat3x3.hpp"
+	"../detail/type_mat4x4.hpp"
+	"../detail/type_vec3.hpp"
+	"../detail/type_vec4.hpp"
+	"../ext/vector_relational.hpp"
+	"../ext/quaternion_relational.hpp"
+	"../gtc/constants.hpp"
+	"../gtc/matrix_transform.hpp"
+	"type_quat.inl"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\quaternion_relational.hpp
+	"../vector_relational.hpp"
+	"quaternion_relational.inl"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\quaternion_relational.inl
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_quat.inl
+	"../trigonometric.hpp"
+	"../exponential.hpp"
+	"../ext/quaternion_common.hpp"
+	"../ext/quaternion_geometric.hpp"
+	<limits>
+	"type_quat_simd.inl"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_quat_simd.inl
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\quaternion_float_precision.hpp
+	"../detail/type_quat.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\quaternion_double.hpp
+	"../detail/type_quat.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\quaternion_double_precision.hpp
+	"../detail/type_quat.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\quaternion_trigonometric.hpp
+	"../trigonometric.hpp"
+	"../exponential.hpp"
+	"scalar_constants.hpp"
+	"vector_relational.hpp"
+	<limits>
+	"quaternion_trigonometric.inl"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\quaternion_trigonometric.inl
+	"scalar_constants.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\quaternion_transform.hpp
+	"../common.hpp"
+	"../trigonometric.hpp"
+	"../geometric.hpp"
+	"quaternion_transform.inl"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\quaternion_transform.inl
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtc\quaternion.inl
+	"../trigonometric.hpp"
+	"../geometric.hpp"
+	"../exponential.hpp"
+	<limits>
+	"quaternion_simd.inl"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtc\epsilon.hpp
+	"../detail/setup.hpp"
+	"../detail/qualifier.hpp"
+	"epsilon.inl"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtc\epsilon.inl
+	"../vector_relational.hpp"
+	"../common.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtc\quaternion_simd.inl
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtx\quaternion.hpp
+	"../glm.hpp"
+	"../gtc/constants.hpp"
+	"../gtc/quaternion.hpp"
+	"../gtx/norm.hpp"
+	"quaternion.inl"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\quaternion_exponential.hpp
+	"../common.hpp"
+	"../trigonometric.hpp"
+	"../geometric.hpp"
+	"../ext/scalar_constants.hpp"
+	"quaternion_exponential.inl"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\quaternion_exponential.inl
+	"scalar_constants.hpp"
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtx\norm.hpp
+	"../detail/func_geometric.hpp"
+	"../gtx/quaternion.hpp"
+	"norm.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtx\component_wise.hpp
+	"../detail/setup.hpp"
+	"../detail/precision.hpp"
+	"component_wise.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtx\component_wise.inl
+	<limits>
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtx\norm.inl
+	"../detail/precision.hpp"
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtx\quaternion.inl
+	<limits>
+	"../gtc/constants.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtc\type_ptr.hpp
+	"../gtc/quaternion.hpp"
+	"../vec2.hpp"
+	"../vec3.hpp"
+	"../vec4.hpp"
+	"../mat2x2.hpp"
+	"../mat2x3.hpp"
+	"../mat2x4.hpp"
+	"../mat3x2.hpp"
+	"../mat3x3.hpp"
+	"../mat3x4.hpp"
+	"../mat4x2.hpp"
+	"../mat4x3.hpp"
+	"../mat4x4.hpp"
+	<cstring>
+	"type_ptr.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtc\vec1.hpp
+	"../glm.hpp"
+	"../detail/type_vec1.hpp"
+	"vec1.inl"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_bool1.hpp
+	"../detail/type_vec1.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_bool1_precision.hpp
+	"../detail/type_vec1.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_float1.hpp
+	"../detail/type_vec1.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_float1_precision.hpp
+	"../detail/type_vec1.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_double1.hpp
+	"../detail/type_vec1.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_double1_precision.hpp
+	"../detail/type_vec1.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_int1.hpp
+	"../detail/type_vec1.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_int1_sized.hpp
+	"../ext/vector_int1.hpp"
+	"../ext/scalar_int_sized.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_uint1.hpp
+	"../detail/type_vec1.hpp"
+
+1621785782 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\ext\vector_uint1_sized.hpp
+	"../ext/vector_uint1.hpp"
+	"../ext/scalar_uint_sized.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtc\type_ptr.inl
+	<cstring>
+
+1539582627 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ftgl\ftgl.h
+	<ft2build.h>
+	<FTGL/FTPoint.h>
+	<FTGL/FTBBox.h>
+	<FTGL/FTBuffer.h>
+	<FTGL/FTGlyph.h>
+	<FTGL/FTBitmapGlyph.h>
+	<FTGL/FTBufferGlyph.h>
+	<FTGL/FTExtrdGlyph.h>
+	<FTGL/FTOutlineGlyph.h>
+	<FTGL/FTPixmapGlyph.h>
+	<FTGL/FTPolyGlyph.h>
+	<FTGL/FTTextureGlyph.h>
+	<FTGL/FTTriangleExtractorGlyph.h>
+	<FTGL/FTFont.h>
+	<FTGL/FTGLBitmapFont.h>
+	<FTGL/FTBufferFont.h>
+	<FTGL/FTGLExtrdFont.h>
+	<FTGL/FTGLOutlineFont.h>
+	<FTGL/FTGLPixmapFont.h>
+	<FTGL/FTGLPolygonFont.h>
+	<FTGL/FTGLTextureFont.h>
+	<FTGL/FTGLTriangleExtractorFont.h>
+	<FTGL/FTLayout.h>
+	<FTGL/FTSimpleLayout.h>
+
+1613207814 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\freetype\ft2build.h
+	<freetype/config/ftheader.h>
+
+1613207814 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\freetype\config\ftheader.h
+
+1539582627 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ftgl\ftpoint.h
+	<FTGL/ftgl.h>
+
+1539582627 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ftgl\ftbbox.h
+	<FTGL/ftgl.h>
+
+1539582627 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ftgl\ftbuffer.h
+	<FTGL/ftgl.h>
+
+1539582627 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ftgl\ftglyph.h
+	<FTGL/ftgl.h>
+
+1539582627 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ftgl\ftbitmapglyph.h
+	<FTGL/ftgl.h>
+
+1539582627 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ftgl\ftbufferglyph.h
+	<FTGL/ftgl.h>
+
+1539582627 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ftgl\ftextrdglyph.h
+	<FTGL/ftgl.h>
+
+1539582627 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ftgl\ftoutlineglyph.h
+	<FTGL/ftgl.h>
+
+1539582627 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ftgl\ftpixmapglyph.h
+	<FTGL/ftgl.h>
+
+1539582627 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ftgl\ftpolyglyph.h
+	<FTGL/ftgl.h>
+
+1539582627 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ftgl\fttextureglyph.h
+	<FTGL/ftgl.h>
+
+1539582627 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ftgl\fttriangleextractorglyph.h
+	<FTGL/ftgl.h>
+	<vector>
+
+1539582627 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ftgl\ftfont.h
+	<FTGL/ftgl.h>
+
+1539582627 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ftgl\ftglbitmapfont.h
+	<FTGL/ftgl.h>
+
+1539582627 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ftgl\ftbufferfont.h
+	<FTGL/ftgl.h>
+
+1539582627 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ftgl\ftglextrdfont.h
+	<FTGL/ftgl.h>
+
+1539582627 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ftgl\ftgloutlinefont.h
+	<FTGL/ftgl.h>
+
+1539582627 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ftgl\ftglpixmapfont.h
+	<FTGL/ftgl.h>
+
+1539582627 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ftgl\ftglpolygonfont.h
+	<FTGL/ftgl.h>
+	<vector>
+
+1539582627 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ftgl\ftgltexturefont.h
+	<FTGL/ftgl.h>
+
+1539582627 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ftgl\ftgltriangleextractorfont.h
+	<FTGL/ftgl.h>
+	<vector>
+
+1539582627 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ftgl\ftlayout.h
+	<FTGL/ftgl.h>
+
+1539582627 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ftgl\ftsimplelayout.h
+	<FTGL/ftgl.h>
+
+1722086557 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ufg\biginventoryfile.h
+	<iostream>
+	<vector>
+	<string>
+	<sstream>
+	<iomanip>
+	<fstream>
+	<algorithm>
+	<iterator>
+	<unordered_map>
+	<cstdint>
+	<windows.h>
+	"stringext.h"
+	"UFG/ResourceID.h"
+	"UFG/ResourceData.h"
+	"filesystem.h"
+	"bytestream.h"
+
+1722086557 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\ufg\resourcedata.h
+	<iostream>
+	<cstdint>
+	"UFG/ResourceID.h"
+	"UFG/BonePalette.h"
+	"UFG/Texture.h"
+	"UFG/Buffer.h"
+	"UFG/Material.h"
+	"UFG/Model.h"
+	"UFG/Skeleton.h"
+	"Filenames.h"
+	"smdmodel.h"
+	"vectorext.h"
+	"bytestream.h"
+	"viewport3d.h"
+
+1720972891 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\smdmodel.h
+	<iostream>
+	<fstream>
+	<sstream>
+	<string>
+	<vector>
+	<unordered_map>
+	<tuple>
+	<stdexcept>
+
+1721012396 source:e:\backup\mycloud4100\coding\cpp\projects\mefview\src\smdmodel.cpp
+	"SMDModel.h"
+
+1722086557 source:e:\backup\mycloud4100\coding\cpp\projects\mefview\src\ufg\biginventoryfile.cpp
+	"UFG/BigInventoryFile.h"
+	"UFG/QuickCompression.h"
+	"Filenames.h"
+	<algorithm>
+	<shlobj.h>
+	<fstream>
+
+1722399513 source:e:\backup\mycloud4100\coding\cpp\projects\mefview\src\ufg\resourcedata.cpp
+	"UFG/ResourceData.h"
+
+1728082915 source:e:\backup\mycloud4100\coding\cpp\projects\mefview\src\viewport3d.cpp
+	"viewport3d.h"
+	"Texture2D.h"
+	"resource.h"
+
+1721082780 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\vectorext.h
+	<algorithm>
+	<vector>
+	<iterator>
+
+1721095299 source:e:\backup\mycloud4100\coding\cpp\projects\mefview\include\resource.rc
+	"resource.h"
+
+1478990699 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\gli.hpp
+	"format.hpp"
+	"target.hpp"
+	"levels.hpp"
+	"image.hpp"
+	"texture.hpp"
+	"texture1d.hpp"
+	"texture1d_array.hpp"
+	"texture2d.hpp"
+	"texture2d_array.hpp"
+	"texture3d.hpp"
+	"texture_cube.hpp"
+	"texture_cube_array.hpp"
+	"sampler1d.hpp"
+	"sampler1d_array.hpp"
+	"sampler2d.hpp"
+	"sampler2d_array.hpp"
+	"sampler3d.hpp"
+	"sampler_cube.hpp"
+	"sampler_cube_array.hpp"
+	"duplicate.hpp"
+	"view.hpp"
+	"comparison.hpp"
+	"reduce.hpp"
+	"transform.hpp"
+	"load.hpp"
+	"save.hpp"
+	"gl.hpp"
+	"dx.hpp"
+	"./core/flip.hpp"
+
+1474225054 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\format.hpp
+	"type.hpp"
+	<cstdint>
+	"./core/format.inl"
+
+1457651226 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\type.hpp
+	<cstddef>
+	<glm/glm.hpp>
+	<glm/gtc/vec1.hpp>
+	<glm/gtx/std_based_type.hpp>
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_int.hpp
+	"setup.hpp"
+	<type_traits>
+	<cstdint>
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_vec.hpp
+	"precision.hpp"
+	"type_int.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\precision.hpp
+	"setup.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\type_mat.hpp
+	"precision.hpp"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\func_matrix.hpp
+	"../detail/precision.hpp"
+	"../detail/setup.hpp"
+	"../detail/type_mat.hpp"
+	"../vec2.hpp"
+	"../vec3.hpp"
+	"../vec4.hpp"
+	"../mat2x2.hpp"
+	"../mat2x3.hpp"
+	"../mat2x4.hpp"
+	"../mat3x2.hpp"
+	"../mat3x3.hpp"
+	"../mat3x4.hpp"
+	"../mat4x2.hpp"
+	"../mat4x3.hpp"
+	"../mat4x4.hpp"
+	"func_matrix.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\func_geometric.hpp
+	"type_vec3.hpp"
+	"func_geometric.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\func_exponential.hpp
+	"type_vec1.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	<cmath>
+	"func_exponential.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\func_vector_relational.hpp
+	"precision.hpp"
+	"setup.hpp"
+	"func_vector_relational.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\func_common.hpp
+	"setup.hpp"
+	"precision.hpp"
+	"type_int.hpp"
+	"_fixes.hpp"
+	"func_common.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\func_trigonometric.hpp
+	"setup.hpp"
+	"precision.hpp"
+	"func_trigonometric.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\func_packing.hpp
+	"type_vec2.hpp"
+	"type_vec4.hpp"
+	"func_packing.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\detail\func_integer.hpp
+	"setup.hpp"
+	"precision.hpp"
+	"func_common.hpp"
+	"func_vector_relational.hpp"
+	"func_integer.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtc\vec1.inl
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtx\std_based_type.hpp
+	"../glm.hpp"
+	<cstdlib>
+	"std_based_type.inl"
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtx\std_based_type.inl
+
+1474225054 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\format.inl
+
+1456864373 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\target.hpp
+
+1460799069 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\levels.hpp
+	"type.hpp"
+	"./core/levels.inl"
+
+1456864372 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\levels.inl
+	<glm/gtc/integer.hpp>
+	<glm/gtx/component_wise.hpp>
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtc\integer.hpp
+	"../detail/setup.hpp"
+	"../detail/precision.hpp"
+	"../detail/func_common.hpp"
+	"../detail/func_integer.hpp"
+	"../detail/func_exponential.hpp"
+	<limits>
+	"integer.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtc\integer.inl
+
+1458155819 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\image.hpp
+	"./core/storage_linear.hpp"
+	"./core/image.inl"
+
+1456864373 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\storage_linear.hpp
+	<vector>
+	<queue>
+	<string>
+	<cassert>
+	<cmath>
+	<cstring>
+	<memory>
+	"../type.hpp"
+	"../format.hpp"
+	<glm/gtc/round.hpp>
+	<glm/gtx/component_wise.hpp>
+	<glm/gtx/integer.hpp>
+	<glm/gtx/bit.hpp>
+	<glm/gtx/raw_data.hpp>
+	<glm/gtx/wrap.hpp>
+	"storage_linear.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtc\round.hpp
+	"../detail/setup.hpp"
+	"../detail/precision.hpp"
+	"../detail/_vectorize.hpp"
+	"../vector_relational.hpp"
+	"../common.hpp"
+	<limits>
+	"round.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtc\round.inl
+	"../detail/func_integer.hpp"
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtx\integer.hpp
+	"../glm.hpp"
+	"../gtc/integer.hpp"
+	"integer.inl"
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtx\integer.inl
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtx\bit.hpp
+	"../gtc/bitfield.hpp"
+	"bit.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtc\bitfield.hpp
+	"../detail/setup.hpp"
+	"../detail/precision.hpp"
+	"../detail/type_int.hpp"
+	"../detail/_vectorize.hpp"
+	<limits>
+	"bitfield.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtc\bitfield.inl
+	"../simd/integer.h"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtx\bit.inl
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtx\raw_data.hpp
+	"../detail/setup.hpp"
+	"../detail/type_int.hpp"
+	"raw_data.inl"
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtx\raw_data.inl
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtx\wrap.hpp
+	"../glm.hpp"
+	"../gtc/vec1.hpp"
+	"wrap.inl"
+
+1478988009 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtx\wrap.inl
+
+1456967324 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\storage_linear.inl
+
+1456864372 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\image.inl
+
+1478193897 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\texture.hpp
+	"image.hpp"
+	"target.hpp"
+	"levels.hpp"
+	<array>
+	"./core/texture.inl"
+
+1456891039 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\texture.inl
+	<cstring>
+
+1457142402 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\texture1d.hpp
+	"texture.hpp"
+	"image.hpp"
+	"./core/texture1d.inl"
+
+1456891983 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\texture1d.inl
+	"../levels.hpp"
+
+1457142538 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\texture1d_array.hpp
+	"texture1d.hpp"
+	"./core/texture1d_array.inl"
+
+1456891964 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\texture1d_array.inl
+	"../levels.hpp"
+
+1457145937 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\texture2d.hpp
+	"texture.hpp"
+	"image.hpp"
+	"./core/texture2d.inl"
+
+1456891234 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\texture2d.inl
+	"../levels.hpp"
+
+1457142598 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\texture2d_array.hpp
+	"texture2d.hpp"
+	"./core/texture2d_array.inl"
+
+1456891951 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\texture2d_array.inl
+	"../levels.hpp"
+
+1457145705 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\texture3d.hpp
+	"texture.hpp"
+	"image.hpp"
+	"./core/texture3d.inl"
+
+1456891627 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\texture3d.inl
+	"../levels.hpp"
+
+1457142442 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\texture_cube.hpp
+	"texture2d.hpp"
+	"./core/texture_cube.inl"
+
+1456891577 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\texture_cube.inl
+
+1457142469 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\texture_cube_array.hpp
+	"texture_cube.hpp"
+	"./core/texture_cube_array.inl"
+
+1456891999 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\texture_cube_array.inl
+
+1456864373 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\sampler1d.hpp
+	"sampler.hpp"
+	"texture1d.hpp"
+	"core/mipmaps_compute.hpp"
+	"core/convert_func.hpp"
+	"./core/sampler1d.inl"
+
+1478202548 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\sampler.hpp
+	"core/filter.hpp"
+	"./core/sampler.inl"
+
+1478989993 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\filter.hpp
+	"filter.inl"
+
+1456864372 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\filter.inl
+
+1457655067 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\sampler.inl
+	<glm/gtx/wrap.hpp>
+
+1456864372 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\mipmaps_compute.hpp
+	"filter_compute.hpp"
+
+1478202580 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\filter_compute.hpp
+	"filter.hpp"
+	"coord.hpp"
+	<glm/gtc/integer.hpp>
+
+1458070057 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\coord.hpp
+	"../type.hpp"
+
+1457651696 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\convert_func.hpp
+	"../type.hpp"
+	"../texture1d.hpp"
+	"../texture1d_array.hpp"
+	"../texture2d.hpp"
+	"../texture2d_array.hpp"
+	"../texture3d.hpp"
+	"../texture_cube.hpp"
+	"../texture_cube_array.hpp"
+	<glm/gtc/packing.hpp>
+	<glm/gtc/color_space.hpp>
+	<limits>
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtc\packing.hpp
+	"type_precision.hpp"
+	"packing.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtc\type_precision.hpp
+	"../gtc/quaternion.hpp"
+	"../gtc/vec1.hpp"
+	"../vec2.hpp"
+	"../vec3.hpp"
+	"../vec4.hpp"
+	"../mat2x2.hpp"
+	"../mat2x3.hpp"
+	"../mat2x4.hpp"
+	"../mat3x2.hpp"
+	"../mat3x3.hpp"
+	"../mat3x4.hpp"
+	"../mat4x2.hpp"
+	"../mat4x3.hpp"
+	"../mat4x4.hpp"
+	"type_precision.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtc\type_precision.inl
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtc\packing.inl
+	"../common.hpp"
+	"../vec2.hpp"
+	"../vec3.hpp"
+	"../vec4.hpp"
+	"../detail/type_half.hpp"
+	<cstring>
+	<limits>
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtc\color_space.hpp
+	"../detail/setup.hpp"
+	"../detail/precision.hpp"
+	"../exponential.hpp"
+	"../vec3.hpp"
+	"../vec4.hpp"
+	<limits>
+	"color_space.inl"
+
+1478988008 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\glm\gtc\color_space.inl
+
+1456864372 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\sampler1d.inl
+	"clear.hpp"
+	<glm/vector_relational.hpp>
+
+1456864372 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\clear.hpp
+	"convert_func.hpp"
+
+1456864373 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\sampler1d_array.hpp
+	"sampler.hpp"
+	"texture1d_array.hpp"
+	"core/mipmaps_compute.hpp"
+	"core/convert_func.hpp"
+	"./core/sampler1d_array.inl"
+
+1456864372 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\sampler1d_array.inl
+	"clear.hpp"
+	<glm/vector_relational.hpp>
+
+1457146482 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\sampler2d.hpp
+	"sampler.hpp"
+	"texture2d.hpp"
+	"core/mipmaps_compute.hpp"
+	"core/convert_func.hpp"
+	"./core/sampler2d.inl"
+
+1456864372 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\sampler2d.inl
+	"clear.hpp"
+	<glm/vector_relational.hpp>
+
+1456864373 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\sampler2d_array.hpp
+	"sampler.hpp"
+	"texture2d_array.hpp"
+	"core/mipmaps_compute.hpp"
+	"core/convert_func.hpp"
+	"./core/sampler2d_array.inl"
+
+1456864372 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\sampler2d_array.inl
+	"clear.hpp"
+	<glm/vector_relational.hpp>
+
+1456864373 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\sampler3d.hpp
+	"sampler.hpp"
+	"texture3d.hpp"
+	"core/mipmaps_compute.hpp"
+	"core/convert_func.hpp"
+	"./core/sampler3d.inl"
+
+1456864372 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\sampler3d.inl
+	"clear.hpp"
+	<glm/vector_relational.hpp>
+
+1456864373 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\sampler_cube.hpp
+	"sampler.hpp"
+	"texture_cube.hpp"
+	"core/mipmaps_compute.hpp"
+	"core/convert_func.hpp"
+	"./core/sampler_cube.inl"
+
+1456864372 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\sampler_cube.inl
+	"clear.hpp"
+	<glm/vector_relational.hpp>
+
+1456864373 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\sampler_cube_array.hpp
+	"sampler.hpp"
+	"texture_cube_array.hpp"
+	"core/mipmaps_compute.hpp"
+	"core/convert_func.hpp"
+	"./core/sampler_cube_array.inl"
+
+1456864372 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\sampler_cube_array.inl
+	"clear.hpp"
+	<glm/vector_relational.hpp>
+
+1458156074 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\duplicate.hpp
+	"image.hpp"
+	"texture1d.hpp"
+	"texture1d_array.hpp"
+	"texture2d.hpp"
+	"texture2d_array.hpp"
+	"texture3d.hpp"
+	"texture_cube.hpp"
+	"texture_cube_array.hpp"
+	"./core/duplicate.inl"
+
+1456864372 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\duplicate.inl
+
+1456864373 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\view.hpp
+	"image.hpp"
+	"texture.hpp"
+	"texture1d.hpp"
+	"texture1d_array.hpp"
+	"texture2d.hpp"
+	"texture2d_array.hpp"
+	"texture3d.hpp"
+	"texture_cube.hpp"
+	"texture_cube_array.hpp"
+	"./core/view.inl"
+
+1456864373 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\view.inl
+
+1458156115 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\comparison.hpp
+	"image.hpp"
+	"texture1d.hpp"
+	"texture1d_array.hpp"
+	"texture2d.hpp"
+	"texture2d_array.hpp"
+	"texture3d.hpp"
+	"texture_cube.hpp"
+	"texture_cube_array.hpp"
+	"./core/comparison.inl"
+
+1456864372 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\comparison.inl
+	<cstring>
+
+1456864373 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\reduce.hpp
+	"texture1d.hpp"
+	"texture1d_array.hpp"
+	"texture2d.hpp"
+	"texture2d_array.hpp"
+	"texture3d.hpp"
+	"texture_cube.hpp"
+	"texture_cube_array.hpp"
+	"./core/reduce.inl"
+
+1456864372 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\reduce.inl
+	"../sampler1d.hpp"
+	"../sampler1d_array.hpp"
+	"../sampler2d.hpp"
+	"../sampler2d_array.hpp"
+	"../sampler3d.hpp"
+	"../sampler_cube.hpp"
+	"../sampler_cube_array.hpp"
+
+1456864373 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\transform.hpp
+	"texture1d.hpp"
+	"texture1d_array.hpp"
+	"texture2d.hpp"
+	"texture2d_array.hpp"
+	"texture3d.hpp"
+	"texture_cube.hpp"
+	"texture_cube_array.hpp"
+	"./core/transform.inl"
+
+1456864373 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\transform.inl
+
+1458155797 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\load.hpp
+	"texture.hpp"
+	"./core/load.inl"
+
+1478202071 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\load.inl
+	"../load_dds.hpp"
+	"../load_kmg.hpp"
+	"../load_ktx.hpp"
+	"file.hpp"
+
+1458155789 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\load_dds.hpp
+	"texture.hpp"
+	"./core/load_dds.inl"
+
+1478201988 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\load_dds.inl
+	"../dx.hpp"
+	"file.hpp"
+	<cstdio>
+	<cassert>
+
+1474224589 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\dx.hpp
+	"format.hpp"
+	"target.hpp"
+	<array>
+	"./core/dx.inl"
+
+1474224589 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\dx.inl
+	<functional>
+
+1478206049 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\file.hpp
+	<cstdio>
+	"./file.inl"
+
+1478206083 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\file.inl
+	<glm/simd/platform.h>
+
+1458155761 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\load_kmg.hpp
+	"texture.hpp"
+	"./core/load_kmg.inl"
+
+1478202036 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\load_kmg.inl
+	"file.hpp"
+	<cstdio>
+	<cassert>
+
+1458155752 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\load_ktx.hpp
+	"texture.hpp"
+	"./core/load_ktx.inl"
+
+1478202053 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\load_ktx.inl
+	"../gl.hpp"
+	"file.hpp"
+	<cstdio>
+	<cassert>
+
+1458160290 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\gl.hpp
+	"format.hpp"
+	"target.hpp"
+	<array>
+	"./core/gl.inl"
+
+1458160693 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\gl.inl
+	<algorithm>
+
+1456864373 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\save.hpp
+	"save_dds.hpp"
+	"save_ktx.hpp"
+	"./core/save.inl"
+
+1456864373 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\save_dds.hpp
+	"texture.hpp"
+	"./core/save_dds.inl"
+
+1478202028 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\save_dds.inl
+	<cstdio>
+	"../load_dds.hpp"
+	"file.hpp"
+
+1456864373 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\save_ktx.hpp
+	"texture.hpp"
+	"./core/save_ktx.inl"
+
+1478202080 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\save_ktx.inl
+	<cstdio>
+	<glm/gtc/round.hpp>
+	"../load_ktx.hpp"
+	"file.hpp"
+
+1456864372 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\save.inl
+	"../save_dds.hpp"
+	"../save_kmg.hpp"
+	"../save_ktx.hpp"
+
+1456864373 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\save_kmg.hpp
+	"texture.hpp"
+	"./core/save_kmg.inl"
+
+1478202587 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\save_kmg.inl
+	<cstdio>
+	<glm/gtc/round.hpp>
+	"../load_kmg.hpp"
+	"filter.hpp"
+	"file.hpp"
+
+1474225054 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\flip.hpp
+	<array>
+	"../texture2d.hpp"
+	"../texture2d_array.hpp"
+	"../texture_cube.hpp"
+	"../texture_cube_array.hpp"
+	"flip.inl"
+
+1474225054 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gli\core\flip.inl
+
+1501500339 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\gl\glew.h
+	<stddef.h>
+	<inttypes.h>
+	<stdint.h>
+	<inttypes.h>
+	<Availability.h>
+	<OpenGL/glu.h>
+	<GL/glu.h>
+
+1721472840 e:\backup\mycloud4100\coding\cpp\projects\mefview\include\texture2d.h
+	<iostream>
+	<cstdint>
+	<random>
+	<sstream>
+	"bytestream.h"
+
+1722091689 source:e:\backup\mycloud4100\coding\cpp\projects\mefview\src\texture2d.cpp
+	"Texture2D.h"
+	<iostream>
+

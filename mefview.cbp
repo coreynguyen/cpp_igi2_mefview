@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="mefview" />
+		<Option pch_mode="2" />
+		<Option compiler="mingw_w64_x32" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/mefview" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="mingw_w64_x32" />
+				<Option parameters='&quot;G:\tmp\rando_mef_files\helmet.mef&quot;' />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="include" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/mefview" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="mingw_w64_x32" />
+				<Compiler>
+					<Add option="-O3" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-O3" />
+					<Add option="-s" />
+					<Add option="-static-libstdc++" />
+					<Add option="-static-libgcc" />
+				</Linker>
+				<ExtraCommands>
+					<Add before="version.bat" />
+				</ExtraCommands>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add option="-DMING32" />
+			<Add option="-DWIN32" />
+			<Add option="-DGLEW_STATIC" />
+			<Add directory="include" />
+			<Add directory="include/FLTK" />
+			<Add directory="include/freetype" />
+		</Compiler>
+		<Linker>
+			<Add option="-static-libgcc" />
+			<Add option="-static-libgcc -static-libstdc++ -Wl,-Bstatic -lstdc++ -lpthread -Wl,-Bdynamic" />
+			<Add library="fltk_gl" />
+			<Add library="fltk_forms" />
+			<Add library="fltk_images" />
+			<Add library="fltk_jpeg" />
+			<Add library="fltk_png" />
+			<Add library="fltk_z" />
+			<Add library="fltk" />
+			<Add library="glew32" />
+			<Add library="glu32" />
+			<Add library="dwmapi" />
+			<Add library="shlwapi" />
+			<Add library="comdlg32" />
+			<Add library="ole32" />
+			<Add library="uuid" />
+			<Add library="comctl32" />
+			<Add library="gdi32" />
+			<Add library="ws2_32" />
+			<Add library="winmm" />
+			<Add library="ftgl" />
+			<Add library="opengl32" />
+			<Add library="freetype_noharfbuzz" />
+			<Add library="glm" />
+			<Add library="glfw3" />
+			<Add directory="lib" />
+			<Add directory="include" />
+			<Add directory="lib/FLTK" />
+		</Linker>
+		<ExtraCommands>
+			<Add after='XCOPY &quot;$(PROJECT_DIR)\filelist.txt&quot; &quot;$(TARGET_OUTPUT_DIR)&quot; /D /Y' />
+		</ExtraCommands>
+		<Unit filename="include/filesystem.h" />
+		<Unit filename="include/resource.h" />
+		<Unit filename="include/resource.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Unit filename="include/viewport3d.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="src/viewport3d.cpp" />
+		<Unit filename="version.bat" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
