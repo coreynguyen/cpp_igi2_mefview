@@ -30,37 +30,41 @@ enum Tool {
     NONE
 };
 
-
 class Materialm {
 public:
+    // Material properties
     glm::vec4 ambient;
     glm::vec4 diffuse;
     glm::vec4 specular;
     float shininess;
+    glm::vec3 albedoColor;
 
+    // Texture IDs
     GLuint diffuseMapTexture;
     GLuint specularMapTexture;
     GLuint normalMapTexture;
     GLuint cubemapTexture;
 
+    // Texture file paths (if needed)
     std::string diffuseMap;
     std::string specularMap;
     std::string normalMap;
 
+    // Flags
     bool useTexture;
     bool useMaterial;
 
+    // Constructor
     Materialm();
 
+    // Methods
     void applyRandomColors();
-
-
-    void setAlpha(float v);
     void apply() const;
+    void setAlpha(float v);
+    void loadTextureFromMemory(const unsigned char* data, int width, int height, int channels);
 
-
-
-
+private:
+    GLuint loadTextureFromMemoryInternal(const unsigned char* data, int width, int height, int channels);
 };
 
 class Mesh {
@@ -85,6 +89,8 @@ public:
     bool showBoundBox;
     bool showPivotAxis;
 
+    std::vector<GLuint> materialEBOs;
+    std::vector<GLsizei> materialCounts;
     enum RenderMode {
         Wireframe,
         EdgeWires,
@@ -105,7 +111,10 @@ public:
     std::vector<RenderMode> renderModes;
 
     Mesh();
+    ~Mesh();
     Mesh(const std::vector<glm::vec3>& vertices, const std::vector<glm::ivec3>& faces, const std::vector<int>& materialIDs, const std::vector<glm::vec2>& tverts, const std::vector<Materialm>& materials, const std::vector<glm::vec3>& normals);
+
+
 
     void generateTeapot();
     void calculateNormals();
@@ -120,6 +129,13 @@ public:
     void drawBoundingBox(const glm::mat4& view, const glm::mat4& projection);
     void drawGappedSegment(glm::vec3 start, glm::vec3 end, float gapPercentage);
     void drawPivot(const glm::mat4& view, const glm::mat4& projection, float lineLength = 0.6f);
+
+
+    void renderOutline(const glm::mat4& view, const glm::mat4& projection);
+    void renderWireframe( const glm::mat4& view, const glm::mat4& projection, const glm::vec3& cameraPos, GLuint shaderProgram, const std::vector<glm::vec3>& lightPositions, const std::vector<glm::vec3>& lightColors);
+    void renderEdgeWires( const glm::mat4& view, const glm::mat4& projection, const glm::vec3& cameraPos, GLuint shaderProgram, const std::vector<glm::vec3>& lightPositions, const std::vector<glm::vec3>& lightColors);
+    void renderVertices( const glm::mat4& view, const glm::mat4& projection, const glm::vec3& cameraPos, GLuint shaderProgram, const std::vector<glm::vec3>& lightPositions, const std::vector<glm::vec3>& lightColors);
+    void renderNormals( const glm::mat4& view, const glm::mat4& projection, const glm::vec3& cameraPos, GLuint normalShaderProgram, const std::vector<glm::vec3>& lightPositions, const std::vector<glm::vec3>& lightColors);
     void render(const glm::mat4& view, const glm::mat4& projection, const glm::vec3& cameraPos, GLuint shaderProgram, const std::vector<glm::vec3>& lightPositions, const std::vector<glm::vec3>& lightColors);
 
     // New methods for handling external mesh data
@@ -150,11 +166,14 @@ class MyGlWindow : public Fl_Gl_Window {
 
 public:
     MyGlWindow(int x, int y, int w, int h, const char* l = 0);
+
+    ~MyGlWindow();
+
     void initOpenGL();
 
     void render3D();
     void renderUVs();
-
+    std::vector<Mesh> meshes;
     void draw() override;
     void orbit(float deltaX, float deltaY);
     void pan(float dx, float dy);
@@ -166,6 +185,24 @@ public:
     Mesh addMesh(const std::vector<glm::vec3>& vertices, const std::vector<glm::ivec3>& faces, const std::vector<int>& materialIDs, const std::vector<glm::vec2>& tverts, const std::vector<Materialm>& materials, const std::vector<glm::vec3>& normals);
     void loadMeshTextures();
     void zoomExtents();
+    void clearMeshes();
+
+//    CallbackData* callbackData = nullptr;
+//    void setCallbackData(CallbackData* data);
+    // Additional methods
+    void zoomExtentsAll();
+    void setViewFront();
+    void setViewTop();
+    void setViewLeft();
+    void setViewBottom();
+    void toggleWireframeMode();
+    void toggleEdgedFacesMode();
+    void centerViewportToMouse();
+    void toggleXrayViewMode();
+    void toggleGizmo();
+    void togglePolygonCountDisplay();
+    void undo();
+    void redo();
 void setupMeshes();
 private:
     GLuint gBuffer, gPosition, gNormal, gAlbedoSpec, rboDepth;
@@ -174,7 +211,10 @@ private:
     GLuint gradientShaderProgram, gradientVBO, gradientVAO, gradientEBO;
     GLuint lightShaderProgram, lightVBO, lightVAO, lightCircleVAO, lightCircleVBO;
     GLuint uvShaderProgram;
-    std::vector<Mesh> meshes;
+
+//    GLuint getOutlineShaderProgram;
+
+
     glm::vec3 lightPos;
     std::vector<glm::vec3> lightPositions;
     std::vector<glm::vec3> lightColors;
@@ -185,6 +225,9 @@ private:
     bool orthographic;
     bool isAltPressed;
     bool showGrid;
+    bool showObjectList;
+    bool showGizmo;
+    bool showPolygonCount;
     bool showUVs;
     bool isCtrlPressed;
     bool drawingSelectionBox;
@@ -193,7 +236,6 @@ private:
     float zoomLevel;
     int selectionStartX, selectionStartY;
     int selectionEndX, selectionEndY;
-
     Tool currentTool;
 
     float fps;
@@ -212,6 +254,9 @@ private:
     static const char* gradientFragmentShaderSource;
     static const char* uvVertexShaderSource;
     static const char* uvFragmentShaderSource;
+
+    static const char* outlineShaderSource;
+    static const char* outlineFragmentShaderSource;
 
     int gridVertexCount;
     int axisVertexCount;
