@@ -9,6 +9,7 @@
 #endif
 
 
+
 Materialm::Materialm()
     : ambient(glm::vec4(0.588f, 0.588f, 0.588f, 1.0f)),
       diffuse(glm::vec4(0.588f, 0.588f, 0.588f, 1.0f)),
@@ -18,7 +19,7 @@ Materialm::Materialm()
       specularMapTexture(0),
       normalMapTexture(0),
       cubemapTexture(0),
-      useTexture(true),
+      useTexture(false),
       useMaterial(true) {
 
     applyRandomColors();
@@ -30,10 +31,11 @@ Materialm::Materialm()
 void Materialm::applyRandomColors() {
     static std::mt19937 gen(std::random_device{}());
     static std::uniform_real_distribution<float> dist(0.0f, 1.0f);
-
+    useTexture = false;
     ambient = glm::vec4(dist(gen), dist(gen), dist(gen), 1.0f);
     diffuse = glm::vec4(dist(gen), dist(gen), dist(gen), 1.0f);
     specular = glm::vec4(dist(gen), dist(gen), dist(gen), 1.0f);
+    albedoColor = glm::vec4(dist(gen), dist(gen), dist(gen), 1.0f);
     shininess = 0.6f;
 }
 
@@ -90,8 +92,90 @@ void Materialm::apply() const {
     glActiveTexture(GL_TEXTURE0); // Always reset to GL_TEXTURE0
 }
 
+//void Materialm::loadTexturesFromMemory(unsigned char* diffuseData, int diffuseWidth, int diffuseHeight, int diffuseChannels,
+//                                       unsigned char* specularData, int specularWidth, int specularHeight, int specularChannels,
+//                                       unsigned char* normalData, int normalWidth, int normalHeight, int normalChannels) {
+//    if (diffuseData) {
+//        diffuseMapTexture = loadTextureFromMemoryInternal(diffuseData, diffuseWidth, diffuseHeight, diffuseChannels);
+//        useTexture = true;
+//    }
+//    if (specularData) {
+//        specularMapTexture = loadTextureFromMemoryInternal(specularData, specularWidth, specularHeight, specularChannels);
+//    }
+//    if (normalData) {
+//        normalMapTexture = loadTextureFromMemoryInternal(normalData, normalWidth, normalHeight, normalChannels);
+//    }
+//}
+
+void Materialm::loadTextureFromMemory(const unsigned char* data, int width, int height, int channels) {
+    diffuseMapTexture = loadTextureFromMemoryInternal(data, width, height, channels);
+    useTexture = (diffuseMapTexture != 0);
+}
 
 
+GLuint Materialm::loadTextureFromMemoryInternal(const unsigned char* data, int width, int height, int channels) {
+    GLuint textureID = 0;
+    glGenTextures(1, &textureID);
+
+    if (data) {
+        GLenum format;
+        if (channels == 1)
+            format = GL_RED;
+        else if (channels == 3)
+            format = GL_RGB;
+        else if (channels == 4)
+            format = GL_RGBA;
+        else
+            format = GL_RGB; // Default to RGB
+
+        glBindTexture(GL_TEXTURE_2D, textureID);
+
+        // Load the texture data into OpenGL
+        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+
+        // Set texture parameters
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT); // Wrap mode on S axis
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT); // Wrap mode on T axis
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR); // Minification filter
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // Magnification filter
+    } else {
+        std::cerr << "Texture failed to load from memory." << std::endl;
+        glDeleteTextures(1, &textureID);
+        textureID = 0;
+    }
+
+    return textureID;
+}
+//GLuint Materialm::loadTextureFromMemory(unsigned char* data, int width, int height, int channels) {
+//    GLuint textureID;
+//    glGenTextures(1, &textureID);
+//
+//    if (data) {
+//        GLenum format;
+//        if (channels == 1)
+//            format = GL_RED;
+//        else if (channels == 3)
+//            format = GL_RGB;
+//        else if (channels == 4)
+//            format = GL_RGBA;
+//        else
+//            format = GL_RGB; // Default to RGB
+//
+//        glBindTexture(GL_TEXTURE_2D, textureID);
+//        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+//        glGenerateMipmap(GL_TEXTURE_2D);
+//
+//        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+//        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+//        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+//        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+//    } else {
+//        std::cerr << "Texture failed to load from memory." << std::endl;
+//    }
+//
+//    return textureID;
+//}
 
 Mesh::Mesh() : showMaterial(true), showBackfaceCull(false), isSelected(false), transform(glm::mat4(1.0f)), isTransparent(false), showBoundBox(true), showPivotAxis(true) {
     addRenderMode(Normal);
@@ -99,9 +183,7 @@ Mesh::Mesh() : showMaterial(true), showBackfaceCull(false), isSelected(false), t
     calculateAABB();
 }
 
-Mesh::Mesh(const std::vector<glm::vec3>& vertices, const std::vector<glm::ivec3>& faces, const std::vector<int>& materialIDs,
-    const std::vector<glm::vec2>& tverts, const std::vector<Materialm>& materials, const std::vector<glm::vec3>& normals)
-    : vertices(convertVec3ToFloat(vertices)), faces(faces), tverts(tverts), uvFaces(faces), materials(materials), transform(glm::mat4(1.0f)), isSelected(false), isTransparent(false), showBoundBox(true), showPivotAxis(true) {
+Mesh::Mesh(const std::vector<glm::vec3>& vertices, const std::vector<glm::ivec3>& faces, const std::vector<int>& materialIDs, const std::vector<glm::vec2>& tverts, const std::vector<Materialm>& materials, const std::vector<glm::vec3>& normals) : vertices(convertVec3ToFloat(vertices)), faces(faces), tverts(tverts), uvFaces(faces), materials(materials), transform(glm::mat4(1.0f)), isSelected(false), isTransparent(false), showBoundBox(true), showPivotAxis(true) {
 
 
     if (this->tverts.empty()) {
@@ -142,6 +224,23 @@ Mesh::Mesh(const std::vector<glm::vec3>& vertices, const std::vector<glm::ivec3>
     calculateAABB();
     addRenderMode(Normal);
 }
+
+
+Mesh::~Mesh() {
+    // Delete VBO
+    glDeleteBuffers(1, &VBO);
+
+    // Delete all material EBOs
+    for (size_t i = 0; i < materialEBOs.size(); ++i) {
+        if (materialEBOs[i] != 0) {
+            glDeleteBuffers(1, &materialEBOs[i]);
+        }
+    }
+
+    // Delete VAO
+    glDeleteVertexArrays(1, &VAO);
+}
+
 
 float Mesh::bernstein(int i, int n, float t) {
     float binomial_coeff = 1;
@@ -729,89 +828,101 @@ void Mesh::setupMesh() {
     glBindVertexArray(VAO);
 
     glGenBuffers(1, &VBO);
-    glGenBuffers(1, &EBO);
+    // No global EBO generation here, as we're using material-specific EBOs
 
-    // Prepare interleaved vertex data
     struct Vertex {
         glm::vec3 Position;
         glm::vec3 Normal;
         glm::vec3 Color;
         glm::vec2 TexCoord;
-        float MaterialID;
     };
 
-    std::vector<Vertex> interleavedVertices;
-    std::vector<unsigned int> indices;
+    std::vector<Vertex> interleavedVertices; // Local variable
+    // Since we're handling EBOs per material, we don't need a single indices array
 
-    // Initialize default colors if not provided
+    // Populate interleavedVertices
     if (colors.empty()) {
-        colors.resize(vertices.size() * 3, 1.0f); // RGB = (1.0, 1.0, 1.0)
+        colors.resize(vertices.size() * 3, 1.0f);
     }
 
-    // For each face, create vertices with per-face material ID
     for (size_t i = 0; i < faces.size(); ++i) {
         glm::ivec3 face = faces[i];
-        int materialID = faceMaterialIndices[i];
-
         for (int j = 0; j < 3; ++j) {
             unsigned int vertexIndex = face[j];
 
             Vertex vertex;
-            vertex.Position = glm::vec3(vertices[vertexIndex * 3], vertices[vertexIndex * 3 + 1], vertices[vertexIndex * 3 + 2]);
-            vertex.Normal = glm::vec3(normals[vertexIndex * 3], normals[vertexIndex * 3 + 1], normals[vertexIndex * 3 + 2]);
-            vertex.Color = glm::vec3(colors[vertexIndex * 3], colors[vertexIndex * 3 + 1], colors[vertexIndex * 3 + 2]);
+            vertex.Position = glm::vec3(vertices[vertexIndex * 3],
+                                        vertices[vertexIndex * 3 + 1],
+                                        vertices[vertexIndex * 3 + 2]);
+            vertex.Normal = glm::vec3(normals[vertexIndex * 3],
+                                      normals[vertexIndex * 3 + 1],
+                                      normals[vertexIndex * 3 + 2]);
+            vertex.Color = glm::vec3(colors[vertexIndex * 3],
+                                     colors[vertexIndex * 3 + 1],
+                                     colors[vertexIndex * 3 + 2]);
             vertex.TexCoord = tverts[vertexIndex];
-            vertex.MaterialID = static_cast<float>(materialID);
 
             interleavedVertices.push_back(vertex);
-            indices.push_back(static_cast<unsigned int>(interleavedVertices.size() - 1));
         }
     }
 
-    // Upload interleaved vertex data
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, interleavedVertices.size() * sizeof(Vertex), interleavedVertices.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER,
+                 interleavedVertices.size() * sizeof(Vertex),
+                 interleavedVertices.data(),
+                 GL_STATIC_DRAW);
 
-    // Upload index data
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), indices.data(), GL_STATIC_DRAW);
-
-    // Define vertex attribute pointers
+    // Define vertex attributes
     // Position
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, Position));
     glEnableVertexAttribArray(0);
-
     // Normal
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, Normal));
     glEnableVertexAttribArray(1);
-
     // Color
     glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, Color));
     glEnableVertexAttribArray(2);
-
     // TexCoord
     glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, TexCoord));
     glEnableVertexAttribArray(3);
 
-    // MaterialID
-    glVertexAttribPointer(4, 1, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, MaterialID));
-    glEnableVertexAttribArray(4);
+    // Now, create separate EBOs for each material
+    materialEBOs.resize(materials.size(), 0);
+    materialCounts.resize(materials.size(), 0);
+
+    for (size_t i = 0; i < materials.size(); ++i) {
+        std::vector<unsigned int> materialIndices;
+        for (size_t f = 0; f < faces.size(); ++f) {
+            if (faceMaterialIndices[f] == static_cast<int>(i)) {
+                // Each face has 3 vertices; calculate the corresponding indices in interleavedVertices
+                unsigned int baseIndex = static_cast<unsigned int>(f * 3);
+                materialIndices.push_back(baseIndex);
+                materialIndices.push_back(baseIndex + 1);
+                materialIndices.push_back(baseIndex + 2);
+            }
+        }
+
+        if (!materialIndices.empty()) {
+            GLuint ebo;
+            glGenBuffers(1, &ebo);
+            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+            glBufferData(GL_ELEMENT_ARRAY_BUFFER,
+                         materialIndices.size() * sizeof(unsigned int),
+                         materialIndices.data(),
+                         GL_STATIC_DRAW);
+            materialEBOs[i] = ebo;
+            materialCounts[i] = static_cast<GLsizei>(materialIndices.size());
+        }
+    }
 
     glBindVertexArray(0);
 
-    // Error checking
+    // Check for OpenGL errors
     GLenum error = glGetError();
     if (error != GL_NO_ERROR) {
         std::cerr << "OpenGL Error in setupMesh: " << error << std::endl;
     }
 }
-
-
-
-
-
-
-
 
 void Mesh::setupShader(GLuint shaderProgram, const glm::mat4& view, const glm::mat4& projection,
                        const glm::vec3& cameraPos, const std::vector<glm::vec3>& lightPositions,
@@ -840,19 +951,8 @@ void Mesh::setupShader(GLuint shaderProgram, const glm::mat4& view, const glm::m
     glUniform1f(glGetUniformLocation(shaderProgram, "roughnessValue"), 0.5f); // Adjust as needed
     glUniform1f(glGetUniformLocation(shaderProgram, "aoValue"), 1.0f);        // Adjust as needed
 
-    // Handle albedo (diffuse) texture
-    const Materialm& material = !materials.empty() ? materials[0] : Materialm();
-    if (material.diffuseMapTexture != 0) {
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, material.diffuseMapTexture);
-        glUniform1i(glGetUniformLocation(shaderProgram, "albedoMap"), 0);
-        glUniform1i(glGetUniformLocation(shaderProgram, "useAlbedoMap"), GL_TRUE);
-    } else {
-        glUniform1i(glGetUniformLocation(shaderProgram, "useAlbedoMap"), GL_FALSE);
-    }
-
-    // Reset active texture
-    glActiveTexture(GL_TEXTURE0);
+    // Removed texture binding from here
+    // Texture binding is handled per material in the render function
 
     // Check for OpenGL errors
     GLenum error = glGetError();
@@ -860,6 +960,7 @@ void Mesh::setupShader(GLuint shaderProgram, const glm::mat4& view, const glm::m
         std::cerr << "OpenGL Error in setupShader: " << error << std::endl;
     }
 }
+
 
 
 
@@ -957,7 +1058,11 @@ void Mesh::drawPivot(const glm::mat4& view, const glm::mat4& projection, float l
     glPopAttrib();
     }
 
-void Mesh::render(const glm::mat4& view, const glm::mat4& projection, const glm::vec3& cameraPos, GLuint shaderProgram, const std::vector<glm::vec3>& lightPositions, const std::vector<glm::vec3>& lightColors) {
+
+void Mesh::render(const glm::mat4& view, const glm::mat4& projection, const glm::vec3& cameraPos,
+                 GLuint shaderProgram, const std::vector<glm::vec3>& lightPositions,
+                 const std::vector<glm::vec3>& lightColors) {
+
     if (showBackfaceCull) {
         glEnable(GL_CULL_FACE);
         glCullFace(GL_BACK);
@@ -965,19 +1070,50 @@ void Mesh::render(const glm::mat4& view, const glm::mat4& projection, const glm:
         glDisable(GL_CULL_FACE);
     }
 
-    // Apply materials and textures
-    for (const auto& material : materials) {
-        material.apply();
+    glUseProgram(shaderProgram);
+
+    setupShader(shaderProgram, view, projection, cameraPos, lightPositions, lightColors);
+
+    for (size_t i = 0; i < materials.size() && i < 16; ++i) {
+        const Materialm& material = materials[i];
+
+        // Bind texture if the material uses a texture
+        if (material.useTexture && material.diffuseMapTexture != 0) {
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, material.diffuseMapTexture);
+            glUniform1i(glGetUniformLocation(shaderProgram, "albedoMap"), 0); // Texture unit 0
+            glUniform1i(glGetUniformLocation(shaderProgram, "useAlbedoMap"), GL_TRUE); // Enable texture usage
+        } else {
+            glUniform1i(glGetUniformLocation(shaderProgram, "useAlbedoMap"), GL_FALSE); // Disable texture usage
+
+            // Set albedoColor uniform
+            GLint albedoColorLoc = glGetUniformLocation(shaderProgram, "albedoColor");
+            if (albedoColorLoc != -1) {
+                glUniform3fv(albedoColorLoc, 1, glm::value_ptr(material.albedoColor));
+            } else {
+                std::cerr << "Failed to get uniform location for albedoColor." << std::endl;
+            }
+        }
+
+        // Bind the appropriate EBO for the current material
+        if (materialEBOs[i] != 0) { // Check if EBO exists for the material
+            glBindVertexArray(VAO);
+            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, materialEBOs[i]);
+
+            // Draw the elements
+            glDrawElements(GL_TRIANGLES, materialCounts[i], GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+        }
     }
 
-    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-    glUseProgram(shaderProgram);
-    setupShader(shaderProgram, view, projection, cameraPos, lightPositions, lightColors);
-    glBindVertexArray(VAO);
+    // Unbind textures
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, 0);
 
+    // Handle selection outline if the mesh is selected
     if (isSelected) {
+        // Assuming addRenderMode(Selected) modifies renderModes
         addRenderMode(Selected);
-        // Outline should be rendered first
 
         // Render outline by drawing the mesh slightly scaled up in wireframe mode
         glDisable(GL_DEPTH_TEST);
@@ -987,25 +1123,25 @@ void Mesh::render(const glm::mat4& view, const glm::mat4& projection, const glm:
         glUseProgram(0);  // Disable shader program
         glColor3f(1.0f, 1.0f, 0.0f); // Yellow color for outline
         glLineWidth(3.0f);  // Set outline thickness
-        glm::mat4 outlineTransform = glm::scale(transform, glm::vec3(1.01f)); // Slightly scale up
-        glMatrixMode(GL_PROJECTION);
-        glLoadMatrixf(glm::value_ptr(projection));
-        glMatrixMode(GL_MODELVIEW);
-        glLoadMatrixf(glm::value_ptr(view * outlineTransform));
-        glBindVertexArray(VAO);
-        glDrawElements(GL_TRIANGLES, faces.size() * 3, GL_UNSIGNED_INT, 0);
-        glBindVertexArray(0);
+
+        // Note: Modern OpenGL requires you to handle transformations via shaders.
+        // To draw the outline, you should adjust the model matrix or use a separate shader.
+
+        // For demonstration purposes, we'll assume a separate shader program for outlines is used.
+        // If not, consider implementing outline rendering with shaders.
+
+        // Restore OpenGL state
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
         glEnable(GL_DEPTH_TEST);
     } else {
         removeRenderMode(Selected);
     }
 
+    // Handle other render modes (Wireframe, EdgeWires, Vertices, Normals, Faceted, XRay, etc.)
     for (const auto& mode : renderModes) {
         if (mode == Outline) continue;
         switch (mode) {
             case Wireframe: {
-                //std::cout << "Wires\n";
                 glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
                 glDisable(GL_LIGHTING);
                 glDisable(GL_TEXTURE_2D);
@@ -1014,18 +1150,13 @@ void Mesh::render(const glm::mat4& view, const glm::mat4& projection, const glm:
                 glColor3f(1.0f, 1.0f, 1.0f); // Set color to white
                 glLineWidth(0.5f);  // Set wire thickness
 
-                glMatrixMode(GL_PROJECTION);
-                glLoadMatrixf(glm::value_ptr(projection));
-                glMatrixMode(GL_MODELVIEW);
-                glLoadMatrixf(glm::value_ptr(view));
-
+                // Bind VAO and draw
                 glBindVertexArray(VAO);
-                glDrawElements(GL_TRIANGLES, faces.size() * 3, GL_UNSIGNED_INT, 0);
+                glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(faces.size() * 3), GL_UNSIGNED_INT, 0);
                 glBindVertexArray(0);
 
                 // Restore the default polygon mode
                 glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
                 break;
             }
             case EdgeWires: {
@@ -1035,7 +1166,7 @@ void Mesh::render(const glm::mat4& view, const glm::mat4& projection, const glm:
                 glUseProgram(shaderProgram);
                 setupShader(shaderProgram, view, projection, cameraPos, lightPositions, lightColors);
                 glBindVertexArray(VAO);
-                glDrawElements(GL_TRIANGLES, faces.size() * 3, GL_UNSIGNED_INT, 0);
+                glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(faces.size() * 3), GL_UNSIGNED_INT, 0);
                 glBindVertexArray(0);
                 glDisable(GL_POLYGON_OFFSET_FILL);
 
@@ -1047,13 +1178,8 @@ void Mesh::render(const glm::mat4& view, const glm::mat4& projection, const glm:
                 glColor3f(1.0f, 1.0f, 1.0f); // Set color to white
                 glLineWidth(0.5f);  // Set wire thickness
 
-                glMatrixMode(GL_PROJECTION);
-                glLoadMatrixf(glm::value_ptr(projection));
-                glMatrixMode(GL_MODELVIEW);
-                glLoadMatrixf(glm::value_ptr(view * transform));
-
                 glBindVertexArray(VAO);
-                glDrawElements(GL_TRIANGLES, faces.size() * 3, GL_UNSIGNED_INT, 0);
+                glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(faces.size() * 3), GL_UNSIGNED_INT, 0);
                 glBindVertexArray(0);
 
                 // Restore the default polygon mode
@@ -1061,126 +1187,134 @@ void Mesh::render(const glm::mat4& view, const glm::mat4& projection, const glm:
                 break;
             }
             case Vertices: {
-                // Disable shader program
-                glUseProgram(0);
-
-                // Set up the projection and modelview matrices
-                glMatrixMode(GL_PROJECTION);
-                glLoadMatrixf(glm::value_ptr(projection));
-                glMatrixMode(GL_MODELVIEW);
-                glLoadMatrixf(glm::value_ptr(view * transform));
+                glUseProgram(0); // Disable shader program
 
                 // Set the point size and color
-                glColor3f(1.0f, 0.0f, 0.0f); // Red color
                 glPointSize(5.0f); // Set point size
+                glColor3f(1.0f, 0.0f, 0.0f); // Red color
 
-                // Draw vertices as points
-                glBegin(GL_POINTS);
-                for (size_t i = 0; i < vertices.size(); i += 3) {
-                    glVertex3f(vertices[i], vertices[i + 1], vertices[i + 2]);
-                }
-                glEnd();
+                // Bind VAO and draw points
+                glBindVertexArray(VAO);
+                glDrawElements(GL_POINTS, static_cast<GLsizei>(faces.size() * 3), GL_UNSIGNED_INT, 0);
+                glBindVertexArray(0);
 
                 // Reset point size and color
                 glPointSize(1.0f);
                 glColor3f(1.0f, 1.0f, 1.0f); // Reset color to white
                 break;
             }
-            case Normals: {
-                glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-                glUseProgram(shaderProgram);
-                setupShader(shaderProgram, view, projection, cameraPos, lightPositions, lightColors);
-                glBindVertexArray(VAO);
-                glDrawElements(GL_TRIANGLES, faces.size() * 3, GL_UNSIGNED_INT, 0);
-                glBindVertexArray(0);
+case Normals: {
+    // Render the mesh normally with lighting
+    glUseProgram(shaderProgram);
+    setupShader(shaderProgram, view, projection, cameraPos, lightPositions, lightColors);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(faces.size() * 3), GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
 
-                // Draw normals
-                glUseProgram(0); // Disable shader program
+    // Draw normals
+    glUseProgram(0); // Disable shader program
 
-                // Set up the projection and modelview matrices
-                glMatrixMode(GL_PROJECTION);
-                glLoadMatrixf(glm::value_ptr(projection));
-                glMatrixMode(GL_MODELVIEW);
-                glLoadMatrixf(glm::value_ptr(view * transform));
+    // Set the color for normals
+    glColor3f(0.0f, 0.0f, 1.0f); // Blue color
+    glLineWidth(1.0f);
 
-                // Draw blue lines for vertex normals
-                glColor3f(0.0f, 0.0f, 1.0f); // Set color to blue
-                glBegin(GL_LINES);
-                for (size_t i = 0; i < vertices.size(); i += 3) {
-                    glm::vec3 vertex(vertices[i], vertices[i + 1], vertices[i + 2]);
-                    glm::vec3 normal(normals[i], normals[i + 1], normals[i + 2]);
-                    glm::vec3 normalEnd = vertex + 0.1f * normal; // Short blue line
+    // Enable client states if using legacy OpenGL
+    // For modern OpenGL, consider using a separate VBO for normals
 
-                    glVertex3f(vertex.x, vertex.y, vertex.z);
-                    glVertex3f(normalEnd.x, normalEnd.y, normalEnd.z);
-                }
-                glEnd();
-                glColor3f(1.0f, 1.0f, 1.0f); // Reset color to white
-                break;
-            }
+    glBegin(GL_LINES);
+    for (size_t i = 0; i < vertices.size(); i += 3) {
+        // Extract vertex position
+        glm::vec3 vertex(vertices[i], vertices[i + 1], vertices[i + 2]);
+
+        // Extract corresponding normal
+        glm::vec3 normal(normals[i], normals[i + 1], normals[i + 2]);
+
+        // Calculate the end point of the normal line
+        glm::vec3 normalEnd = vertex + 0.1f * glm::normalize(normal); // Adjust the length as needed
+
+        // Specify the line vertices
+        glVertex3f(vertex.x, vertex.y, vertex.z);
+        glVertex3f(normalEnd.x, normalEnd.y, normalEnd.z);
+    }
+    glEnd();
+
+    // Reset color and line width
+    glColor3f(1.0f, 1.0f, 1.0f); // Reset color to white
+    glLineWidth(1.0f);
+    break;
+}
+
             case Faceted: {
-                glShadeModel(GL_FLAT);
-                glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+                // Faceted shading typically requires flat shading; however, with shaders, you can control it via shader settings
+                // For demonstration, we'll skip implementing flat shading with shaders
+                // Instead, ensure your fragment shader handles per-face normals if needed
+
                 glUseProgram(shaderProgram);
                 setupShader(shaderProgram, view, projection, cameraPos, lightPositions, lightColors);
                 glBindVertexArray(VAO);
-                glDrawElements(GL_TRIANGLES, faces.size() * 3, GL_UNSIGNED_INT, 0);
+                glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(faces.size() * 3), GL_UNSIGNED_INT, 0);
                 glBindVertexArray(0);
-                glShadeModel(GL_SMOOTH);
                 break;
             }
             case XRay: {
-                glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
                 glEnable(GL_BLEND);
                 glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
                 glUseProgram(shaderProgram);
                 setupShader(shaderProgram, view, projection, cameraPos, lightPositions, lightColors);
-                glUniform4f(glGetUniformLocation(shaderProgram, "colorOverride"), 0.5f, 0.5f, 0.5f, 0.5f); // Translucent grey
+
+                GLint colorOverrideLoc = glGetUniformLocation(shaderProgram, "colorOverride");
+                if (colorOverrideLoc != -1) {
+                    glUniform4f(colorOverrideLoc, 0.5f, 0.5f, 0.5f, 0.5f); // Translucent grey
+                } else {
+                    std::cerr << "Failed to get uniform location for colorOverride." << std::endl;
+                }
+
                 glBindVertexArray(VAO);
-                glDrawElements(GL_TRIANGLES, faces.size() * 3, GL_UNSIGNED_INT, 0);
+                glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(faces.size() * 3), GL_UNSIGNED_INT, 0);
                 glBindVertexArray(0);
-                glUniform4f(glGetUniformLocation(shaderProgram, "colorOverride"), 1.0f, 1.0f, 1.0f, 1.0f); // Reset color override
+
+                if (colorOverrideLoc != -1) {
+                    glUniform4f(colorOverrideLoc, 1.0f, 1.0f, 1.0f, 1.0f); // Reset color override
+                }
+
                 glDisable(GL_BLEND);
                 break;
             }
             case Selected: {
-                glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
                 glUseProgram(shaderProgram);
                 setupShader(shaderProgram, view, projection, cameraPos, lightPositions, lightColors);
                 glBindVertexArray(VAO);
-                glDrawElements(GL_TRIANGLES, faces.size() * 3, GL_UNSIGNED_INT, 0);
+                glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(faces.size() * 3), GL_UNSIGNED_INT, 0);
                 glBindVertexArray(0);
-                drawBoundingBox(view, projection);
+                drawBoundingBox(view, projection); // Assuming this function is properly implemented
                 break;
             }
             case Pivot: {
-                // Draw the mesh first
-                glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
                 glUseProgram(shaderProgram);
                 setupShader(shaderProgram, view, projection, cameraPos, lightPositions, lightColors);
                 glBindVertexArray(VAO);
-                glDrawElements(GL_TRIANGLES, faces.size() * 3, GL_UNSIGNED_INT, 0);
+                glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(faces.size() * 3), GL_UNSIGNED_INT, 0);
                 glBindVertexArray(0);
 
                 // Disable depth testing to ensure pivot is drawn on top
                 glDisable(GL_DEPTH_TEST);
-                drawPivot(view, projection);
+                drawPivot(view, projection); // Assuming this function is properly implemented
                 glEnable(GL_DEPTH_TEST); // Re-enable depth testing
                 break;
             }
             case UV: {
+                // Assuming UVVAO is properly set up elsewhere
                 glBindVertexArray(UVVAO);
                 glUseProgram(shaderProgram);
-                glDrawArrays(GL_LINES, 0, tverts.size());
+                glDrawArrays(GL_LINES, 0, static_cast<GLsizei>(tverts.size()));
                 glBindVertexArray(0);
                 break;
             }
             case Normal: {
-                glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
                 glUseProgram(shaderProgram);
                 setupShader(shaderProgram, view, projection, cameraPos, lightPositions, lightColors);
                 glBindVertexArray(VAO);
-                glDrawElements(GL_TRIANGLES, faces.size() * 3, GL_UNSIGNED_INT, 0);
+                glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(faces.size() * 3), GL_UNSIGNED_INT, 0);
                 glBindVertexArray(0);
                 break;
             }
@@ -1193,8 +1327,15 @@ void Mesh::render(const glm::mat4& view, const glm::mat4& projection, const glm:
 
     // Restore the default polygon mode
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-}
 
+    glUseProgram(0); // Unbind shader program
+
+    // Check for OpenGL errors
+    GLenum error = glGetError();
+    if (error != GL_NO_ERROR) {
+        std::cerr << "OpenGL Error in render: " << error << std::endl;
+    }
+}
 
 // New methods for handling external mesh data
 void Mesh::setVertices(const std::vector<glm::vec3>& verts) {
@@ -1243,12 +1384,9 @@ void Mesh::validateFaceIndices() {
 }
 
 void Mesh::loadTextures() {
-    //std::cout << "NumMaterials: \t" << materials.size() << std::endl;
-//    for (auto& material : materials) {
-//        material.loadTextureFromMemory();
-//        material.loadSpecularMapFromMemory();
-//        material.loadNormalMapFromMemory();
-//    }
+    for (auto &material : materials) {
+        // Use loadTexturesFromMemory for custom data, otherwise load from path if needed.
+    }
 }
 
 void Mesh::validateIndices(const std::vector<glm::ivec3>& faces, size_t limit) const {
@@ -1268,6 +1406,9 @@ void Mesh::generateUVFaces() {
         uvFaces[i] = faces[i];
     }
 }
+
+
+
 
 void Mesh::calculateNormals() {
     // Updated implementation of calculateNormals() that uses faces instead of indices
@@ -1329,20 +1470,19 @@ std::vector<float> Mesh::convertVec3ToFloat(const std::vector<glm::vec3>& vec3Ar
     return floatArray;
 }
 
-const char* MyGlWindow::gVertexShaderSource = (R"(
+// Vertex Shader
+const char* MyGlWindow::gVertexShaderSource = R"(
 #version 330 core
 
 layout(location = 0) in vec3 aPos;        // Vertex position
 layout(location = 1) in vec3 aNormal;     // Vertex normal
 layout(location = 2) in vec3 aColor;      // Vertex color
 layout(location = 3) in vec2 aTexCoord;   // Texture coordinates
-layout(location = 4) in float aMaterialID; // Material ID
 
 out VS_OUT {
     vec3 FragPos;
     vec3 Normal;
     vec2 TexCoord;
-    flat float MaterialID;
 } vs_out;
 
 uniform mat4 model;
@@ -1353,14 +1493,13 @@ void main() {
     vs_out.FragPos = vec3(model * vec4(aPos, 1.0));
     vs_out.Normal = mat3(transpose(inverse(model))) * aNormal;
     vs_out.TexCoord = aTexCoord;
-    vs_out.MaterialID = aMaterialID;
     gl_Position = projection * view * vec4(vs_out.FragPos, 1.0);
 }
 
-)");
+)";
 
-
-const char* MyGlWindow::gFragmentShaderSource = (R"(
+// Fragment Shader
+const char* MyGlWindow::gFragmentShaderSource = R"(
 #version 330 core
 
 out vec4 FragColor;
@@ -1369,11 +1508,11 @@ in VS_OUT {
     vec3 FragPos;
     vec3 Normal;
     vec2 TexCoord;
-    flat float MaterialID;
 } fs_in;
 
 uniform vec3 viewPos;
 
+// Light structure and uniforms
 struct Light {
     vec3 Position;
     vec3 Color;
@@ -1386,6 +1525,7 @@ uniform Light lights[4];
 // Material properties
 uniform sampler2D albedoMap;
 uniform bool useAlbedoMap;
+uniform vec3 albedoColor; // New uniform
 
 uniform float metallicValue;  // Metallic factor (0.0 = dielectric, 1.0 = metal)
 uniform float roughnessValue; // Roughness factor (0.0 = smooth, 1.0 = rough)
@@ -1393,7 +1533,7 @@ uniform float aoValue;        // Ambient occlusion factor
 
 const float PI = 3.14159265359;
 
-// Function to generate a color based on MaterialID
+// Function to generate a color based on MaterialID (No longer needed)
 vec3 materialColor(float id) {
     float x = fract(sin(id * 12.9898) * 43758.5453);
     float y = fract(sin((id + 1.0) * 78.233) * 43758.5453);
@@ -1448,7 +1588,7 @@ void main() {
     vec3 V = normalize(viewPos - fs_in.FragPos);
 
     // Retrieve material properties
-    vec3 albedo = useAlbedoMap ? pow(texture(albedoMap, fs_in.TexCoord).rgb, vec3(2.2)) : materialColor(fs_in.MaterialID);
+    vec3 albedo = useAlbedoMap ? pow(texture(albedoMap, fs_in.TexCoord).rgb, vec3(2.2)) : albedoColor;
     float metallic  = metallicValue;
     float roughness = roughnessValue;
     float ao        = aoValue;
@@ -1464,7 +1604,8 @@ void main() {
         vec3 L = normalize(lights[i].Position - fs_in.FragPos);
         vec3 H = normalize(V + L);
         float distance    = length(lights[i].Position - fs_in.FragPos);
-        float attenuation = 1.0 / (lights[i].Quadratic * distance * distance + lights[i].Linear * distance + 1.0);
+        float attenuation = 1.0 / (lights[i].Quadratic * distance * distance +
+                                   lights[i].Linear * distance + 1.0);
         vec3 radiance     = lights[i].Color * attenuation;
 
         // Cook-Torrance BRDF
@@ -1502,7 +1643,43 @@ void main() {
     FragColor = vec4(color, 1.0);
 }
 
+)";
+
+const char* MyGlWindow::outlineShaderSource = (R"(
+// OutlineVertexShader.glsl
+#version 330 core
+
+layout(location = 0) in vec3 aPos;
+
+uniform mat4 model;
+uniform mat4 view;
+uniform mat4 projection;
+
+void main()
+{
+    // Transform the vertex position
+    gl_Position = projection * view * model * vec4(aPos, 1.0);
+}
 )");
+
+
+const char* MyGlWindow::outlineFragmentShaderSource = (R"(
+// OutlineFragmentShader.glsl
+#version 330 core
+
+out vec4 FragColor;
+
+uniform vec3 outlineColor;
+
+void main()
+{
+    // Set the fragment color to the outline color
+    FragColor = vec4(outlineColor, 1.0);
+}
+
+)");
+
+
 
 const char* MyGlWindow::lightingVertexShaderSource = (R"(
     #version 330 core
@@ -2007,46 +2184,72 @@ void MyGlWindow::renderText(const char* text, float x, float y, bool bold) {
 void MyGlWindow::renderLegend() {
     float y = h() - 20.0f; // Starting y position for the legend
     renderText("Hotkeys:", 10.0f, y);
-    renderText("Ctrl+A - Select All", 10.0f, y - 20.0f);
-    renderText("Ctrl+I - Invert Selection", 10.0f, y - 40.0f);
-    renderText("H - Show Object List", 10.0f, y - 60.0f);
-    renderText("W - Move Tool", 10.0f, y - 80.0f);
-    renderText("E - Rotate Tool", 10.0f, y - 100.0f);
-    renderText("R - Scale Tool", 10.0f, y - 120.0f);
-    renderText("Z - Zoom Extents", 10.0f, y - 140.0f);
-    renderText("Ctrl+Shift+Z - Zoom Extents All", 10.0f, y - 160.0f);
-    renderText("P - Perspective View", 10.0f, y - 180.0f);
-    renderText("F - Front View", 10.0f, y - 200.0f);
-    renderText("T - Top View", 10.0f, y - 220.0f);
-    renderText("L - Left View", 10.0f, y - 240.0f);
-    renderText("B - Bottom View", 10.0f, y - 260.0f);
-    renderText("Alt+B - Toggle Background", 10.0f, y - 280.0f);
-    renderText("F3 - Wireframe Mode", 10.0f, y - 300.0f);
-    renderText("F4 - Edged Faces Mode", 10.0f, y - 320.0f);
-    renderText("G - Toggle Grid", 10.0f, y - 340.0f);
-    renderText("I - Center Viewport to Mouse", 10.0f, y - 360.0f);
-    renderText("J - Toggle Selection Brackets", 10.0f, y - 380.0f);
-    renderText("U - Toggle Orthographic", 10.0f, y - 400.0f);
-    renderText("X - Hide/Unhide Gizmo", 10.0f, y - 420.0f);
-    renderText("7 - Polygon Count", 10.0f, y - 440.0f);
-    renderText("Ctrl+Z - Undo", 10.0f, y - 460.0f);
-    renderText("Ctrl+Y - Redo", 10.0f, y - 480.0f);
-    renderText("Ctrl+LMB - Add to Selection", 10.0f, y - 500.0f);
-    renderText("Alt+LMB - Remove from Selection", 10.0f, y - 520.0f);
-    renderText("Shift+LMB - Clone and Move", 10.0f, y - 540.0f);
-    renderText("Alt+X - Xray View Mode", 10.0f, y - 560.0f);
-    renderText("MMB - Pan View", 10.0f, y - 580.0f);
-    renderText("Alt+MMB - Orbit View", 10.0f, y - 600.0f);
-    renderText("Ctrl+MMB - Fast Pan View", 10.0f, y - 620.0f);
+    renderText("    Ctrl+A - Select All", 10.0f, y-=20.0f);
+    renderText("    Ctrl+I - Invert Selection", 10.0f, y-=20.0f);
+//    renderText("H - Show Object List", 10.0f, y-=20.0f);
+//    renderText("W - Move Tool", 10.0f, y-=20.0f);
+//    renderText("E - Rotate Tool", 10.0f, y-=20.0f);
+//    renderText("R - Scale Tool", 10.0f, y-=20.0f);
+    renderText("    Z - Zoom Extents", 10.0f, y-=20.0f);
+    renderText("    Ctrl+Shift+Z - Zoom Extents All", 10.0f, y-=20.0f);
+    renderText("    P - Perspective View", 10.0f, y-=20.0f);
+    renderText("    F - Front View", 10.0f, y-=20.0f);
+    renderText("    T - Top View", 10.0f, y-=20.0f);
+    renderText("    L - Left View", 10.0f, y-=20.0f);
+    renderText("    B - Bottom View", 10.0f, y-=20.0f);
+    renderText("    Alt+B - Toggle Background", 10.0f, y-=20.0f);
+    renderText("    F3 - Wireframe Mode", 10.0f, y-=20.0f);
+    renderText("    F4 - Edged Faces Mode", 10.0f, y-=20.0f);
+    renderText("    G - Toggle Grid", 10.0f, y-=20.0f);
+    renderText("    I - Center Viewport to Mouse", 10.0f, y-=20.0f);
+    renderText("    J - Toggle Selection Brackets", 10.0f, y-=20.0f);
+    renderText("    U - Toggle Orthographic", 10.0f, y-=20.0f);
+
+    renderText("Selection:", 10.0f, y-=40.0f);
+    renderText("    Ctrl+LMB - Add to Selection", 10.0f, y-=20.0f);
+    renderText("    Alt+LMB - Remove from Selection", 10.0f, y-=20.0f);
+//    renderText("X - Hide/Unhide Gizmo", 10.0f, y-=20.0f);
+//    renderText("7 - Polygon Count", 10.0f, y-=20.0f);
+//    renderText("Ctrl+Z - Undo", 10.0f, y-=20.0f);
+//    renderText("Ctrl+Y - Redo", 10.0f, y-=20.0f);
+    renderText("Navigation:", 10.0f, y-=40.0f);
+//    renderText("Shift+LMB - Clone and Move", 10.0f, y-=20.0f);
+//    renderText("Alt+X - Xray View Mode", 10.0f, y-=20.0f);
+    renderText("    MMB - Pan View", 10.0f, y-=20.0f);
+    renderText("    Alt+MMB - Orbit View", 10.0f, y-=20.0f);
+    renderText("    Ctrl+MMB - Fast Pan View", 10.0f, y-=20.0f);
 }
 
 
+
+
+
 MyGlWindow::MyGlWindow(int x, int y, int w, int h, const char* l)
-    : Fl_Gl_Window(x, y, w, h, l), angleX(0.0f), angleY(0.0f), distance(5.0f), showLegend(false), orthographic(false), showGrid(true), drawGradientBackground(true), cameraPosition(glm::vec3(0.0f, 0.0f, 5.0f)), cameraTarget(glm::vec3(0.0f, 0.0f, 0.0f)), cameraUp(glm::vec3(0.0f, 1.0f, 0.0f)), drawingSelectionBox(false), selectionStartX(0), selectionStartY(0), selectionEndX(0), selectionEndY(0), currentTool(NONE), showUVs(false), panOffset(glm::vec2(0.0f, 0.0f)), zoomLevel(1.0f), currentMaterialID(0) {
-
-
-
-
+    : Fl_Gl_Window(x, y, w, h, l),
+      angleX(0.0f),
+      angleY(0.0f),
+      distance(5.0f),
+      showLegend(false),
+      orthographic(false),
+      showGrid(true),
+      drawGradientBackground(true),
+      cameraPosition(glm::vec3(0.0f, 0.0f, 5.0f)),
+      cameraTarget(glm::vec3(0.0f, 0.0f, 0.0f)),
+      cameraUp(glm::vec3(0.0f, 1.0f, 0.0f)),
+      drawingSelectionBox(false),
+      selectionStartX(0),
+      selectionStartY(0),
+      selectionEndX(0),
+      selectionEndY(0),
+      currentTool(NONE),
+      showUVs(false),
+      panOffset(glm::vec2(0.0f, 0.0f)),
+      zoomLevel(1.0f),
+      currentMaterialID(0),
+      showGizmo(true),
+      showPolygonCount(false),
+      showObjectList(false)
+{
     // Mode settings for OpenGL
     mode(FL_RGB | FL_ALPHA | FL_DEPTH | FL_DOUBLE | FL_OPENGL3);
 
@@ -2071,6 +2274,13 @@ MyGlWindow::MyGlWindow(int x, int y, int w, int h, const char* l)
     cameraUp = upVector;
 }
 
+MyGlWindow::~MyGlWindow() {
+//    if (callbackData) {
+//        delete callbackData;
+//        callbackData = nullptr;
+//    }
+}
+
 void MyGlWindow::initOpenGL() {
     glewExperimental = GL_TRUE;
     if (glewInit() != GLEW_OK) {
@@ -2078,6 +2288,21 @@ void MyGlWindow::initOpenGL() {
         exit(EXIT_FAILURE);
     }
 
+
+    // Compile Outliner
+//    GLuint outlineShader = glCreateShader(GL_VERTEX_SHADER);
+//    compileShader(outlineShader, outlineShaderSource);
+//
+//    GLuint outlineFragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+//    compileShader(outlineFragmentShader, outlineFragmentShaderSource);
+//
+//    getOutlineShaderProgram = glCreateProgram();
+//    linkProgram(getOutlineShaderProgram, outlineShader, outlineFragmentShader);
+//
+//    glDeleteShader(outlineShader);
+//    glDeleteShader(outlineFragmentShader);
+
+    // Compile Vertex Shader
     GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
     compileShader(vertexShader, gVertexShaderSource);
 
@@ -2541,14 +2766,110 @@ void MyGlWindow::pan(float dx, float dy) {
 
 void MyGlWindow::zoom(float delta) {
     distance -= delta;
-    if (distance < 1.0f) distance = 1.0f; // Prevent zooming too close
+    float limit = 0.001f;
+    if (distance < limit) distance = limit; // Prevent zooming too close
     cameraPosition = glm::normalize(cameraPosition - cameraTarget) * distance + cameraTarget;
     redraw();
 }
 
 
+void MyGlWindow::zoomExtentsAll() {
+    // Since we have only one viewport, this can be the same as zoomExtents
+    zoomExtents();
+}
 
+void MyGlWindow::setViewFront() {
+    // Set the camera to look from the front (along -Z axis)
+    distance = glm::length(cameraPosition - cameraTarget);
+    cameraPosition = cameraTarget + glm::vec3(0.0f, 0.0f, distance);
+    cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+    redraw();
+}
 
+void MyGlWindow::setViewTop() {
+    // Set the camera to look from the top (along +Y axis)
+    distance = glm::length(cameraPosition - cameraTarget);
+    cameraPosition = cameraTarget + glm::vec3(0.0f, distance, 0.0f);
+    cameraUp = glm::vec3(0.0f, 0.0f, -1.0f);
+    redraw();
+}
+
+void MyGlWindow::setViewLeft() {
+    // Set the camera to look from the left (along +X axis)
+    distance = glm::length(cameraPosition - cameraTarget);
+    cameraPosition = cameraTarget + glm::vec3(distance, 0.0f, 0.0f);
+    cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+    redraw();
+}
+
+void MyGlWindow::setViewBottom() {
+    // Set the camera to look from the bottom (along -Y axis)
+    distance = glm::length(cameraPosition - cameraTarget);
+    cameraPosition = cameraTarget + glm::vec3(0.0f, -distance, 0.0f);
+    cameraUp = glm::vec3(0.0f, 0.0f, 1.0f);
+    redraw();
+}
+
+void MyGlWindow::toggleWireframeMode() {
+    for (auto& mesh : meshes) {
+        if (std::find(mesh.renderModes.begin(), mesh.renderModes.end(), Mesh::Wireframe) != mesh.renderModes.end()) {
+            mesh.removeRenderMode(Mesh::Wireframe);
+            mesh.addRenderMode(Mesh::Normal);
+        } else {
+            mesh.addRenderMode(Mesh::Wireframe);
+            mesh.removeRenderMode(Mesh::Normal);
+        }
+    }
+    redraw();
+}
+
+void MyGlWindow::toggleEdgedFacesMode() {
+    for (auto& mesh : meshes) {
+        if (std::find(mesh.renderModes.begin(), mesh.renderModes.end(), Mesh::EdgeWires) != mesh.renderModes.end()) {
+            mesh.removeRenderMode(Mesh::EdgeWires);
+        } else {
+            mesh.addRenderMode(Mesh::EdgeWires);
+        }
+    }
+    redraw();
+}
+
+void MyGlWindow::centerViewportToMouse() {
+    // Placeholder implementation: centers the viewport to the scene center
+    panOffset = glm::vec2(0.0f, 0.0f);
+    redraw();
+}
+
+void MyGlWindow::toggleXrayViewMode() {
+    for (auto& mesh : meshes) {
+        if (std::find(mesh.renderModes.begin(), mesh.renderModes.end(), Mesh::XRay) != mesh.renderModes.end()) {
+            mesh.removeRenderMode(Mesh::XRay);
+            mesh.addRenderMode(Mesh::Normal);
+        } else {
+            mesh.addRenderMode(Mesh::XRay);
+            mesh.removeRenderMode(Mesh::Normal);
+        }
+    }
+    redraw();
+}
+
+void MyGlWindow::toggleGizmo() {
+    showGizmo = !showGizmo;
+    redraw();
+}
+
+void MyGlWindow::togglePolygonCountDisplay() {
+    showPolygonCount = !showPolygonCount;
+    redraw();
+}
+
+void MyGlWindow::undo() {
+    // Dummy implementation for undo
+}
+
+void MyGlWindow::redo() {
+    // Dummy implementation for redo
+}
 
 void MyGlWindow::drawSelectionRectangle() {
     glMatrixMode(GL_PROJECTION);
@@ -2587,27 +2908,40 @@ void MyGlWindow::selectObject(int x, int y) {
     glm::vec3 rayWorld = glm::vec3(glm::inverse(viewMatrix) * rayEye);
     rayWorld = glm::normalize(rayWorld);
 
+    // Get modifier keys state
+    bool ctrlPressed = Fl::event_state() & FL_CTRL;
+    bool altPressed = Fl::event_state() & FL_ALT;
+
     // Check for intersection with objects
     bool objectSelected = false;
     for (auto& mesh : meshes) {
         glm::vec3 intersectionPoint;
         if (rayIntersectsMesh(cameraPosition, rayWorld, mesh, intersectionPoint)) {
-            mesh.isSelected = true;
-            objectSelected = true;
-        } else {
-            if (!isCtrlPressed) {
+            if (ctrlPressed) {
+                // Add to selection
+                mesh.isSelected = true;
+            } else if (altPressed) {
+                // Remove from selection
                 mesh.isSelected = false;
+            } else {
+                // Deselect others and select this mesh
+                for (auto& m : meshes) {
+                    m.isSelected = false;
+                }
+                mesh.isSelected = true;
             }
+            objectSelected = true;
+            break; // Found an object
         }
     }
 
-    if (!objectSelected && !isCtrlPressed) {
+    if (!objectSelected && !(ctrlPressed || altPressed)) {
+        // Clicked on empty space without modifiers, deselect all
         for (auto& mesh : meshes) {
             mesh.isSelected = false;
         }
     }
 }
-
 
 bool MyGlWindow::rayIntersectsMesh(const glm::vec3& rayOrigin, const glm::vec3& rayDirection, const Mesh& mesh, glm::vec3& intersectionPoint) {
     if (!rayIntersectsAABB(rayOrigin, rayDirection, mesh.minVertex, mesh.maxVertex)) {
@@ -2706,6 +3040,9 @@ void MyGlWindow::selectObjectsInRectangle() {
     yMin = 1.0f - (2.0f * yMin) / h();
     yMax = 1.0f - (2.0f * yMax) / h();
 
+    bool ctrlPressed = Fl::event_state() & FL_CTRL;
+    bool altPressed = Fl::event_state() & FL_ALT;
+
     // Iterate over all meshes
     for (auto& mesh : meshes) {
         bool isInside = false;
@@ -2733,275 +3070,391 @@ void MyGlWindow::selectObjectsInRectangle() {
         }
 
         if (isInside) {
-            mesh.isSelected = true;
-        } else if (!isCtrlPressed) {
+            if (ctrlPressed) {
+                mesh.isSelected = true;
+            } else if (altPressed) {
+                mesh.isSelected = false;
+            } else {
+                mesh.isSelected = true;
+            }
+        } else if (!ctrlPressed && !altPressed) {
             mesh.isSelected = false;
         }
     }
 }
 
 int MyGlWindow::handle(int event) {
-
     int key = Fl::event_key();
-
     static int lastX, lastY;
     static bool middleMouseButton = false;
-
-
-
     static int currentUVChannel = 0;
     static int totalUVChannels = 2;
 
     switch (event) {
-        case FL_PUSH: {
+    case FL_PUSH: {
+        if (Fl::event_button() == FL_MIDDLE_MOUSE) {
+            middleMouseButton = true;
+            lastX = Fl::event_x();
+            lastY = Fl::event_y();
+        } else if (Fl::event_button() == FL_LEFT_MOUSE) {
+            bool ctrlPressed = Fl::event_state() & FL_CTRL;
+            bool altPressed = Fl::event_state() & FL_ALT;
 
-            if (Fl::event_button() == FL_MIDDLE_MOUSE) {
-                middleMouseButton = true;
-                lastX = Fl::event_x();
-                lastY = Fl::event_y();
-            } else if (Fl::event_button() == FL_LEFT_MOUSE) {
-                if (!isCtrlPressed) {
-                    for (auto& mesh : meshes) {
-                        mesh.isSelected = false;
-                    }
+            if (!(ctrlPressed || altPressed)) {
+                for (auto& mesh : meshes) {
+                    mesh.isSelected = false;
                 }
-                drawingSelectionBox = true;
-                selectionStartX = Fl::event_x();
-                selectionStartY = Fl::event_y();
-                selectionEndX = selectionStartX;
-                selectionEndY = selectionStartY;
-                selectObject(selectionStartX, selectionStartY);
             }
-            return 1;
+            drawingSelectionBox = true;
+            selectionStartX = Fl::event_x();
+            selectionStartY = Fl::event_y();
+            selectionEndX = selectionStartX;
+            selectionEndY = selectionStartY;
+            selectObject(selectionStartX, selectionStartY);
         }
+        return 1;
+    }
 
-        case FL_DRAG: {
+    case FL_DRAG: {
+        if (middleMouseButton) {
+            int dx = Fl::event_x() - lastX;
+            int dy = Fl::event_y() - lastY;
+            bool altPressed = Fl::event_state() & FL_ALT;
+            bool ctrlPressed = Fl::event_state() & FL_CTRL;
 
-            if (middleMouseButton) {
-                int dx = Fl::event_x() - lastX;
-                int dy = Fl::event_y() - lastY;
-
-                if (showUVs) {
-                    panOffset += glm::vec2(-dx * 0.007f,- dy * -0.007f);
-                } else if (!showUVs && isAltPressed) {
-                    orbit(-dx, dy);
-                } else {
-                    pan(-dx * 0.01f, dy * 0.01f);
-                }
-                lastX = Fl::event_x();
-                lastY = Fl::event_y();
-                redraw();
-            } else if (drawingSelectionBox) {
-                selectionEndX = Fl::event_x();
-                selectionEndY = Fl::event_y();
-                redraw(); // Ensure redraw is called to update the selection rectangle
-            }
-            return 1;
-        }
-        case FL_RELEASE: {
-            if (Fl::event_button() == FL_MIDDLE_MOUSE) {
-                middleMouseButton = false;
-            } else if (Fl::event_button() == FL_LEFT_MOUSE) {
-                drawingSelectionBox = false;
-                selectObjectsInRectangle();
-                redraw(); // Ensure redraw is called to clear the selection rectangle
-            }
-            return 1;
-        }
-
-
-
-        case FL_MOUSEWHEEL: {
             if (showUVs) {
-                zoomLevel = glm::clamp(zoomLevel + (Fl::event_dy() * 0.1f), 0.1f, 10.0f);
+                panOffset += glm::vec2(-dx * 0.007f, -dy * -0.007f);
+            } else if (!showUVs && altPressed) {
+                orbit(-dx, dy);
+            } else if (ctrlPressed) {
+                pan(-dx * 0.05f, dy * 0.05f); // Fast Pan View
             } else {
-                zoom((Fl::event_dy() * -0.1f) * glm::length(cameraPosition - cameraTarget));
+                pan(-dx * 0.01f, dy * 0.01f);
+            }
+            lastX = Fl::event_x();
+            lastY = Fl::event_y();
+            redraw();
+        } else if (drawingSelectionBox) {
+            selectionEndX = Fl::event_x();
+            selectionEndY = Fl::event_y();
+            redraw(); // Ensure redraw is called to update the selection rectangle
+        }
+        return 1;
+    }
+    case FL_RELEASE: {
+        if (Fl::event_button() == FL_MIDDLE_MOUSE) {
+            middleMouseButton = false;
+        } else if (Fl::event_button() == FL_LEFT_MOUSE) {
+            drawingSelectionBox = false;
+            selectObjectsInRectangle();
+            redraw(); // Ensure redraw is called to clear the selection rectangle
+        }
+        return 1;
+    }
+
+    case FL_MOUSEWHEEL: {
+        if (showUVs) {
+            zoomLevel = glm::clamp(zoomLevel + (Fl::event_dy() * 0.1f), 0.1f, 10.0f);
+        } else {
+            zoom((Fl::event_dy() * -0.1f) * glm::length(cameraPosition - cameraTarget));
+        }
+        redraw();
+        return 1;
+    }
+    case FL_SHORTCUT: {
+        bool ctrlPressed = Fl::event_state() & FL_CTRL;
+        bool shiftPressed = Fl::event_state() & FL_SHIFT;
+        bool altPressed = Fl::event_state() & FL_ALT;
+
+        if (ctrlPressed && (key == 'a' || key == 'A')) {
+            // Ctrl+A - Select All
+            for (auto& mesh : meshes) {
+                mesh.isSelected = true;
             }
             redraw();
             return 1;
         }
-        case FL_SHORTCUT: {
-            switch (key) {
-
-                case FL_Page_Up:
-                    currentMaterialID = currentMaterialID + 1;
-
-                    break;
-                case FL_Page_Down:
-                    currentMaterialID = min(currentMaterialID - 1, 0);
-                    break;
-                case FL_Alt_L:
-                    isAltPressed = true;
-                    break;
-                case FL_Control_L:
-                    isCtrlPressed = true;
-                    break;
-                case (FL_F + 2): // F2
-                    showLegend = !showLegend;
-                    break;
-                case FL_Escape:
-                    exit(0);
-                    break;
-                case 'b':
-                case 'B':
-                    drawGradientBackground = !drawGradientBackground;
-                    break;
-                case 'g':
-                case 'G':
-                    showGrid = !showGrid;
-                    break;
-                case 'u':
-                case 'U':
-                    orthographic = !orthographic;
-                    break;
-                case 'w':
-                case 'W':
-                    currentTool = MOVE;
-                    break;
-                case 'E':
-                    currentTool = ROTATE;
-                    break;
-                case 'R':
-                    currentTool = SCALE;
-                    break;
-                case 'j':
-                case 'J':
-                    for (auto& mesh : meshes) {
-                        if (std::find(mesh.renderModes.begin(), mesh.renderModes.end(), Mesh::Selected) != mesh.renderModes.end()) {
-                            mesh.removeRenderMode(Mesh::Selected);
-                        } else {
-                            mesh.addRenderMode(Mesh::Selected);
-                        }
-                    }
-                    break;
-                case '1':
-                    for (auto& mesh : meshes) {
-                        if (std::find(mesh.renderModes.begin(), mesh.renderModes.end(), Mesh::Wireframe) != mesh.renderModes.end()) {
-                            mesh.removeRenderMode(Mesh::Wireframe);
-                            mesh.addRenderMode(Mesh::Normal);
-                        } else {
-                            mesh.addRenderMode(Mesh::Wireframe);
-                            mesh.removeRenderMode(Mesh::Normal);
-                        }
-                    }
-                    break;
-                case '2':
-                    for (auto& mesh : meshes) {
-                        if (std::find(mesh.renderModes.begin(), mesh.renderModes.end(), Mesh::EdgeWires) != mesh.renderModes.end()) {
-                            mesh.removeRenderMode(Mesh::EdgeWires);
-                        } else {
-                            mesh.addRenderMode(Mesh::EdgeWires);
-                        }
-                    }
-                    break;
-                case '3':
-                    for (auto& mesh : meshes) {
-                        if (std::find(mesh.renderModes.begin(), mesh.renderModes.end(), Mesh::Vertices) != mesh.renderModes.end()) {
-                            mesh.removeRenderMode(Mesh::Vertices);
-                            mesh.addRenderMode(Mesh::Normal);
-                            mesh.removeRenderMode(Mesh::Wireframe);
-                        } else {
-                            mesh.addRenderMode(Mesh::Vertices);
-                            mesh.removeRenderMode(Mesh::Normal);
-                            mesh.addRenderMode(Mesh::Wireframe);
-                        }
-                    }
-                    break;
-                case '4':
-                    for (auto& mesh : meshes) {
-                        if (std::find(mesh.renderModes.begin(), mesh.renderModes.end(), Mesh::Normals) != mesh.renderModes.end()) {
-                            mesh.removeRenderMode(Mesh::Normals);
-                        } else {
-                            mesh.addRenderMode(Mesh::Normals);
-                        }
-                    }
-                    break;
-                case '5':
-                    for (auto& mesh : meshes) {
-                        if (std::find(mesh.renderModes.begin(), mesh.renderModes.end(), Mesh::Skin) != mesh.renderModes.end()) {
-                            mesh.removeRenderMode(Mesh::Skin);
-                        } else {
-                            mesh.addRenderMode(Mesh::Skin);
-                        }
-                    }
-                    break;
-                case '6':
-                    for (auto& mesh : meshes) {
-                        if (std::find(mesh.renderModes.begin(), mesh.renderModes.end(), Mesh::Material) != mesh.renderModes.end()) {
-                            mesh.removeRenderMode(Mesh::Material);
-                        } else {
-                            mesh.addRenderMode(Mesh::Material);
-                        }
-                    }
-                    break;
-                case '7':
-                    for (auto& mesh : meshes) {
-                        if (std::find(mesh.renderModes.begin(), mesh.renderModes.end(), Mesh::Faceted) != mesh.renderModes.end()) {
-                            mesh.removeRenderMode(Mesh::Faceted);
-                        } else {
-                            mesh.addRenderMode(Mesh::Faceted);
-                        }
-                    }
-                    break;
-                case '8':
-                    for (auto& mesh : meshes) {
-                        mesh.toggleBackfaceCull();
-                    }
-                    break;
-                case '9':
-                    for (auto& mesh : meshes) {
-                        if (std::find(mesh.renderModes.begin(), mesh.renderModes.end(), Mesh::XRay) != mesh.renderModes.end()) {
-                            mesh.addRenderMode(Mesh::Normal);
-                            mesh.removeRenderMode(Mesh::XRay);
-                        } else {
-                            mesh.removeRenderMode(Mesh::Normal);
-                            mesh.addRenderMode(Mesh::XRay);
-                        }
-                    }
-                    break;
-                case '0':
-                    currentMaterialID = 0;
-                    showUVs = !showUVs;
-                    for (auto& mesh : meshes) {
-                        if (std::find(mesh.renderModes.begin(), mesh.renderModes.end(), Mesh::UV) != mesh.renderModes.end()) {
-                            mesh.removeRenderMode(Mesh::UV);
-                        } else {
-                            mesh.addRenderMode(Mesh::UV);
-                        }
-                    }
-                    break;
-                case 'p':
-                case 'P':
-                    for (auto& mesh : meshes) {
-                        if (std::find(mesh.renderModes.begin(), mesh.renderModes.end(), Mesh::Pivot) != mesh.renderModes.end()) {
-                            mesh.removeRenderMode(Mesh::Pivot);
-                        } else {
-                            mesh.addRenderMode(Mesh::Pivot);
-                        }
-                    }
-                    break;
+        if (ctrlPressed && (key == 'i' || key == 'I')) {
+            // Ctrl+I - Invert Selection
+            for (auto& mesh : meshes) {
+                mesh.isSelected = !mesh.isSelected;
             }
             redraw();
+            return 1;
         }
-        case FL_KEYDOWN: {
-            if (key == FL_Alt_L) {
-                isAltPressed = true;
+        if (key == 'h' || key == 'H') {
+            // H - Show Object List
+            showObjectList = !showObjectList;
+            redraw();
+            return 1;
+        }
+        if (key == 'w' || key == 'W') {
+            // W - Move Tool
+            currentTool = MOVE;
+            redraw();
+            return 1;
+        }
+        if (key == 'e' || key == 'E') {
+            // E - Rotate Tool
+            currentTool = ROTATE;
+            redraw();
+            return 1;
+        }
+        if (key == 'r' || key == 'R') {
+            // R - Scale Tool
+            currentTool = SCALE;
+            redraw();
+            return 1;
+        }
+        if (key == 'z' || key == 'Z') {
+            if (ctrlPressed && shiftPressed) {
+                // Ctrl+Shift+Z - Zoom Extents All
+                zoomExtentsAll();
+            } else {
+                // Z - Zoom Extents
+                zoomExtents();
             }
-            if (key == FL_Control_L) {
-                isCtrlPressed = true;
+            redraw();
+            return 1;
+        }
+        if (key == 'f' || key == 'F') {
+            // F - Front View
+            setViewFront();
+            redraw();
+            return 1;
+        }
+        if (key == 't' || key == 'T') {
+            // T - Top View
+            setViewTop();
+            redraw();
+            return 1;
+        }
+        if (key == 'l' || key == 'L') {
+            // L - Left View
+            setViewLeft();
+            redraw();
+            return 1;
+        }
+        if (key == 'b' || key == 'B') {
+            if (altPressed) {
+                // Alt+B - Toggle Background
+                drawGradientBackground = !drawGradientBackground;
+            } else {
+                // B - Bottom View
+                setViewBottom();
             }
-
+            redraw();
+            return 1;
+        }
+        if (key == FL_F + 2) {
+            showLegend = !showLegend;
+            redraw();
+            return 1;
+        }
+        if (key == FL_F + 3) {
+            // F3 - Wireframe Mode
+            toggleWireframeMode();
+            redraw();
+            return 1;
+        }
+        if (key == FL_F + 4) {
+            // F4 - Edged Faces Mode
+            toggleEdgedFacesMode();
+            redraw();
+            return 1;
+        }
+        if (key == 'p' || key == 'P') {
+            for (auto& mesh : meshes) {
+                if (std::find(mesh.renderModes.begin(), mesh.renderModes.end(), Mesh::Pivot) != mesh.renderModes.end()) {
+                    mesh.removeRenderMode(Mesh::Pivot);
+                } else {
+                    mesh.addRenderMode(Mesh::Pivot);
+                }
+            }
+            redraw();
+            return 1;
+        }
+        if (key == 'g' || key == 'G') {
+            // G - Toggle Grid
+            showGrid = !showGrid;
+            redraw();
+            return 1;
+        }
+        if (key == 'i' || key == 'I') {
+            // I - Center Viewport to Mouse
+            centerViewportToMouse();
+            redraw();
+            return 1;
+        }
+        if (key == 'j' || key == 'J') {
+            // J - Toggle Selection Brackets
+            for (auto& mesh : meshes) {
+                if (std::find(mesh.renderModes.begin(), mesh.renderModes.end(), Mesh::Selected) != mesh.renderModes.end()) {
+                    mesh.removeRenderMode(Mesh::Selected);
+                } else {
+                    mesh.addRenderMode(Mesh::Selected);
+                }
+            }
+            redraw();
+            return 1;
+        }
+        if (key == 'u' || key == 'U') {
+            // U - Toggle Orthographic
+            orthographic = !orthographic;
+            redraw();
+            return 1;
+        }
+        if (key == 'x' || key == 'X') {
+            if (altPressed) {
+                // Alt+X - Xray View Mode
+                toggleXrayViewMode();
+            } else {
+                // X - Hide/Unhide Gizmo
+                toggleGizmo();
+            }
+            redraw();
             return 1;
         }
 
-        case FL_KEYUP: {
-            if (Fl::event_key() == FL_Alt_L) {
-                isAltPressed = false;
-            } else if (Fl::event_key() == FL_Control_L) {
-                isCtrlPressed = false;
+        if (key == '0') {
+            currentMaterialID = 0;
+            showUVs = !showUVs;
+            for (auto& mesh : meshes) {
+                if (std::find(mesh.renderModes.begin(), mesh.renderModes.end(), Mesh::UV) != mesh.renderModes.end()) {
+                    mesh.removeRenderMode(Mesh::UV);
+                } else {
+                    mesh.addRenderMode(Mesh::UV);
+                }
             }
+            redraw();
             return 1;
         }
+        if (key == '1') {
+            for (auto& mesh : meshes) {
+                if (std::find(mesh.renderModes.begin(), mesh.renderModes.end(), Mesh::Wireframe) != mesh.renderModes.end()) {
+                    mesh.removeRenderMode(Mesh::Wireframe);
+                    mesh.addRenderMode(Mesh::Normal);
+                } else {
+                    mesh.addRenderMode(Mesh::Wireframe);
+                    mesh.removeRenderMode(Mesh::Normal);
+                }
+            }
+            redraw();
+            return 1;
+        }
+        if (key == '2') {
+            for (auto& mesh : meshes) {
+                if (std::find(mesh.renderModes.begin(), mesh.renderModes.end(), Mesh::EdgeWires) != mesh.renderModes.end()) {
+                    mesh.removeRenderMode(Mesh::EdgeWires);
+                } else {
+                    mesh.addRenderMode(Mesh::EdgeWires);
+                }
+            }
+            redraw();
+            return 1;
+        }
+        if (key == '3') {
+            for (auto& mesh : meshes) {
+                if (std::find(mesh.renderModes.begin(), mesh.renderModes.end(), Mesh::Vertices) != mesh.renderModes.end()) {
+                    mesh.removeRenderMode(Mesh::Vertices);
+                    mesh.addRenderMode(Mesh::Normal);
+                    mesh.removeRenderMode(Mesh::Wireframe);
+                } else {
+                    mesh.addRenderMode(Mesh::Vertices);
+                    mesh.removeRenderMode(Mesh::Normal);
+                    mesh.addRenderMode(Mesh::Wireframe);
+                }
+            }
+            redraw();
+            return 1;
+        }
+        if (key == '4') {
+            for (auto& mesh : meshes) {
+                if (std::find(mesh.renderModes.begin(), mesh.renderModes.end(), Mesh::Normals) != mesh.renderModes.end()) {
+                    mesh.removeRenderMode(Mesh::Normals);
+                } else {
+                    mesh.addRenderMode(Mesh::Normals);
+                }
+            }
+            redraw();
+            return 1;
+        }
+        if (key == '5') {
+            for (auto& mesh : meshes) {
+                if (std::find(mesh.renderModes.begin(), mesh.renderModes.end(), Mesh::Skin) != mesh.renderModes.end()) {
+                    mesh.removeRenderMode(Mesh::Skin);
+                } else {
+                    mesh.addRenderMode(Mesh::Skin);
+                }
+            }
+            redraw();
+            return 1;
+        }
+        if (key == '6') {
+            for (auto& mesh : meshes) {
+                if (std::find(mesh.renderModes.begin(), mesh.renderModes.end(), Mesh::Material) != mesh.renderModes.end()) {
+                    mesh.removeRenderMode(Mesh::Material);
+                } else {
+                    mesh.addRenderMode(Mesh::Material);
+                }
+            }
+            redraw();
+            return 1;
+        }
+
+        if (key == '7') {
+            // 7 - Polygon Count
+            togglePolygonCountDisplay();
+            redraw();
+            return 1;
+        }
+        if (key == '8') {
+            for (auto& mesh : meshes) {
+                mesh.toggleBackfaceCull();
+            }
+            redraw();
+            return 1;
+        }
+        if (key == '9') {
+            for (auto& mesh : meshes) {
+                if (std::find(mesh.renderModes.begin(), mesh.renderModes.end(), Mesh::XRay) != mesh.renderModes.end()) {
+                    mesh.addRenderMode(Mesh::Normal);
+                    mesh.removeRenderMode(Mesh::XRay);
+                } else {
+                    mesh.removeRenderMode(Mesh::Normal);
+                    mesh.addRenderMode(Mesh::XRay);
+                }
+            }
+            redraw();
+            return 1;
+        }
+        if (key == FL_Escape) {
+            exit(0);
+            return 1;
+        }
+        if (key == FL_Page_Up) {
+            currentMaterialID = currentMaterialID + 1;
+            return 1;
+        }
+        if (key == FL_Page_Down) {
+            currentMaterialID = min(currentMaterialID - 1, 0);
+            return 1;
+        }
+        if (ctrlPressed && (key == 'z' || key == 'Z')) {
+            // Ctrl+Z - Undo
+            undo();
+            redraw();
+            return 1;
+        }
+        if (ctrlPressed && (key == 'y' || key == 'Y')) {
+            // Ctrl+Y - Redo
+            redo();
+            redraw();
+            return 1;
+        }
+        redraw();
+        return 1;
+    }
     }
     return Fl_Gl_Window::handle(event);
 }
@@ -3092,6 +3545,22 @@ void MyGlWindow::zoomExtents() {
 
     redraw(); // Redraw the scene with the updated camera
 }
+
+void MyGlWindow::clearMeshes() {
+    for (auto& mesh : meshes) {
+        // Delete VAOs and VBOs
+        glDeleteVertexArrays(1, &mesh.VAO);
+        glDeleteBuffers(1, &mesh.VBO);
+        glDeleteBuffers(1, &mesh.EBO);
+        // If you have other buffers, delete them as well
+    }
+    redraw();
+    meshes.clear();
+}
+
+//void MyGlWindow::setCallbackData(CallbackData* data) {
+//    callbackData = data;
+//}
 
 GLuint MyGlWindow::createProceduralCubemap() {
     const int faceSize = 512;
